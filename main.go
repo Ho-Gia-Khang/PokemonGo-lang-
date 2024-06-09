@@ -13,9 +13,9 @@ import (
 )
 
 type Stats struct {
-	HP                 int `json:"HP"`
-	Attack 		   		int `json:"Attack"`                  
-	Defense            int `json:"Defense"`                 
+	HP                 float32 `json:"HP"`
+	Attack 		   		float32 `json:"Attack"`                  
+	Defense            float32 `json:"Defense"`                 
 	Speed              int `json:"Speed"`                  
 	Sp_Attack          int `json:"Sp_Attack"`                  
 	Sp_Defense         int `json:"Sp_Defense"`                  
@@ -43,11 +43,10 @@ type DamegeWhenAttacked struct {
 
 type Moves struct {
 	Name string `json:"Name"`
-	Element string `json:"Element"`
-	Power string `json:"Power"`
+	Element []string `json:"Element"`
+	Power float32 `json:"Power"`
 	Acc 	int `json:"Acc"`
 	PP 		int `json:"PP"`
-	Description string `json:"Description"`
 }
 
 type Pokemon struct {
@@ -59,7 +58,7 @@ type Pokemon struct {
 	DamegeWhenAttacked []DamegeWhenAttacked `json:"DamegeWhenAttacked"`
 	EvolutionLevel    int `json:"EvolutionLevel"`
 	NextEvolution     string `json:"NextEvolution"`
-	Moves			  []Moves `json:"Moves"`                  
+	Moves             []Moves `json:"Moves"`                 
 }
 
 const (
@@ -67,13 +66,14 @@ const (
 	baseURL = "https://pokedex.org/#/"
 )
 
-var pokemons []Pokemon;
+var pokemons = []Pokemon{}
 
 func main(){
 	crawlPokemonsDriver(numberOfPokemons)
 }
 
 func crawlPokemonsDriver(numsOfPokemons int){
+
 	pw, err := playwright.Run()
 	if err != nil {
 		log.Fatalf("could not start playwright: %v", err)
@@ -89,27 +89,31 @@ func crawlPokemonsDriver(numsOfPokemons int){
 	}
 
 	page.Goto(baseURL)
-	
+
 	for i := range numsOfPokemons{
 		// simulate clicking the button to open the pokemon details
+		page.Reload()
+		page.WaitForURL(baseURL)
+
 		locator := fmt.Sprintf("button.sprite-%d", i + 1)
 		button := page.Locator(locator).First()
 		time.Sleep(500 * time.Millisecond)
 		button.Click()
 
+		url := fmt.Sprintf("https://pokedex.org/#/pokemon/%d", i + 1)
+		page.WaitForURL(url)
+
 		fmt.Print("Pokemon ", i + 1, " ")
-		crawlPokemons(page)
+		newPokemon := crawlPokemons(page)
+		createMoves(&newPokemon)
+		pokemons = append(pokemons, newPokemon)
 
 		page.Goto(baseURL)
-		page.Reload()
 	}
 
-	// parse the pokemons variable to json file
-	js, err := json.MarshalIndent(pokemons, "", "    ")
-	if err != nil {
-		log.Fatal(err)
-	}
-	os.WriteFile("pokedex.json", js, 0644)
+	// parse the pokemons variable to json file	
+	dataPokemons, _ := json.MarshalIndent(pokemons, "", " ")
+	os.WriteFile("pokedex.json", dataPokemons, 0666)
 
 	if err = browser.Close(); err != nil {
 		log.Fatalf("could not close browser: %v", err)
@@ -119,7 +123,7 @@ func crawlPokemonsDriver(numsOfPokemons int){
 	}
 }
 
-func crawlPokemons(page playwright.Page){
+func crawlPokemons(page playwright.Page) Pokemon {
 	pokemon := Pokemon{}
 
 	stats := Stats{}
@@ -128,14 +132,17 @@ func crawlPokemons(page playwright.Page){
 		title, _ := entry.Locator("span:not([class])").TextContent()
 		switch title {
 			case "HP":
-				hp, _ := entry.Locator("span.stat-bar > div.stat-bar-fg").TextContent()
-				stats.HP, _ = strconv.Atoi(hp)
+				stat, _ := entry.Locator("span.stat-bar > div.stat-bar-fg").TextContent()
+				hp, _ := strconv.ParseFloat(stat, 32)
+				stats.HP = float32(hp)
 			case "Attack":
-				attack, _ := entry.Locator("span.stat-bar > div.stat-bar-fg").TextContent()
-				stats.Attack, _ = strconv.Atoi(attack)
+				stat, _ := entry.Locator("span.stat-bar > div.stat-bar-fg").TextContent()
+				Attack, _ := strconv.ParseFloat(stat, 32)
+				stats.Attack = float32(Attack)
 			case "Defense":
-				defense, _ := entry.Locator("span.stat-bar > div.stat-bar-fg").TextContent()
-				stats.Defense, _ = strconv.Atoi(defense)
+				stat, _ := entry.Locator("span.stat-bar > div.stat-bar-fg").TextContent()
+				Defense, _ := strconv.ParseFloat(stat, 32)
+				stats.Defense = float32(Defense)
 			case "Speed":
 				speed, _ := entry.Locator("span.stat-bar > div.stat-bar-fg").TextContent()
 				stats.Speed, _ = strconv.Atoi(speed)
@@ -238,41 +245,19 @@ func crawlPokemons(page playwright.Page){
 		}
 	}
 
-	moves := []Moves{}
-	entries, _ = page.Locator("div.monster-moves > div.moves-row").All()
-	for _, entry := range entries {
-		// simulate clicking the expand button in the move rows
-		expandButton := page.Locator("div.moves-inner-row > button.dropdown-button").First()
-		expandButton.Click()
-
-		name, _ := entry.Locator("div.moves-inner-row > span:nth-child(2)").TextContent()
-		element, _ := entry.Locator("div.moves-inner-row > span.monster-type").TextContent()
-
-		powers, _ := entry.Locator("div.moves-row-detail > div.moves-row-stats > span:nth-child(1)").TextContent()
-		power := strings.Split(powers, ":")
-
-		acc, _ := entry.Locator("div.moves-row-detail > div.moves-row-stats > span:nth-child(2)").TextContent()
-		accs := strings.Split(acc, ":")
-		accValue := strings.Split(accs[1], "%")
-		accInt, _ := strconv.Atoi(accValue[0])
-
-		pps, _ := entry.Locator("div.moves-row-detail > div.moves-row-stats > span:nth-child(3)").TextContent()
-		ppVal := strings.Split(pps, ":")
-		pp, _ := strconv.Atoi(ppVal[1])
-
-		description, _ := entry.Locator("div.moves-row-detail > div.move-description").TextContent()
-
-		moves = append(moves, Moves{Name: name, Element: element, Power: power[1], Acc: accInt, PP: pp, Description: description})
-	}
-	pokemon.Moves = moves
-
 	entries, _ = page.Locator("div.detail-types > span.monster-type").All()
 	for _, entry := range entries {
 		element, _ := entry.TextContent()
 		pokemon.Elements = append(pokemon.Elements, element)
 	}
 
-	fmt.Println(name, ": ",profile)
+	fmt.Println(name)
+	return pokemon
+}
 
-	pokemons = append(pokemons, pokemon)
+func createMoves(pokemon *Pokemon){
+	normalMove := Moves{Name: "Tackle", Element: []string{""}, Power: pokemon.Stats.Attack, Acc: 100, PP: 35}
+	specialMove := Moves{Name: "Special", Element: pokemon.Elements, Power: pokemon.Stats.Attack, Acc: 100, PP: 25}
+	pokemon.Moves = append(pokemon.Moves, normalMove)
+	pokemon.Moves = append(pokemon.Moves, specialMove)
 }
