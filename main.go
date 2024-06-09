@@ -4,11 +4,11 @@ import (
 	"encoding/json"
 	"fmt"
 	"log"
-	"net/http"
 	"strconv"
 	"strings"
+	"time"
 
-	"github.com/gocolly/colly/v2"
+	"github.com/playwright-community/playwright-go"
 )
 
 type Stats struct {
@@ -62,169 +62,213 @@ type Pokemon struct {
 }
 
 const (
-	numberOfPokemons = 2
+	numberOfPokemons = 649
+	baseURL = "https://pokedex.org/#/"
 )
 
 var pokemons []Pokemon;
 
 func main(){
-	c := colly.NewCollector()
-	
-	for i := 1; i <= numberOfPokemons; i++{
-		url := fmt.Sprintf("https://pokedex.org/#/pokemon/%d", i)
-		crawlPokemons(c, url)
-		refresh(url)
-	}
+	crawlPokemonsDriver(numberOfPokemons)
 }
 
-func crawlPokemons(c *colly.Collector, url string,){
-	c.OnRequest(func(r *colly.Request) {
-    	fmt.Println("Visiting:", r.URL.String())
-	})
-
-	c.OnHTML("div.mui-panel", func(e *colly.HTMLElement) {
-		stats := Stats{}
-		e.ForEach("div.detail-panel-content > div.detail-header > div.detail-infobox > div.detail-stats > div.detail-stats-row", func(_ int, el *colly.HTMLElement) {
-			title := el.ChildText("span:not([class])")
-			switch title {
-				case "HP":
-					stats.HP, _ = strconv.Atoi(el.ChildText("span.stat-bar > div.stat-bar-fg"));
-				case "Attack":
-					stats.Attack, _ = strconv.Atoi(el.ChildText("span.stat-bar > div.stat-bar-fg"));
-				case "Defense":
-					stats.Defense, _ = strconv.Atoi(el.ChildText("span.stat-bar > div.stat-bar-fg"));
-				case "Speed":
-					stats.Speed, _ = strconv.Atoi(el.ChildText("span.stat-bar > div.stat-bar-fg"));
-				case "Sp Atk":
-					stats.Sp_Attack, _ = strconv.Atoi(el.ChildText("span.stat-bar > div.stat-bar-fg"));
-				case "Sp Def":
-					stats.Sp_Defense, _ = strconv.Atoi(el.ChildText("span.stat-bar > div.stat-bar-fg"));
-				default:
-					fmt.Println("Unknown title: ", title)
-			}
-		})
-
-		genderRatio := GenderRatio{}
-		profile := Profile{}
-		profile.Name = e.ChildText("h1.detail-panel-header")
-		e.ForEach("div.detail-below-header > div.monster-minutia", func(_ int, el *colly.HTMLElement) {
-			title1 := el.ChildText("strong:nth-child(1)")
-			detail1 := el.ChildText("span:nth-child(2)")
-			switch title1 {
-				case "Height:":
-					height := strings.Split(detail1, " ")
-					val, _ := strconv.ParseFloat(height[0], 32)
-					profile.Height = float32(val)
-				case "Catch Rate:":
-					rates := strings.Split(detail1, "")
-					val, _ := strconv.ParseFloat(rates[0], 32)
-					profile.CatchRate = float32(val)
-				case "Egg Groups:":
-					profile.EggGroup = detail1
-				case "Abilities:":
-					profile.Abilities = detail1
-				default:
-					fmt.Println("Unknown title: ", title1)
-			}
-
-			title2 := el.ChildText("strong:nth-child(3)")
-			detail2 := el.ChildText("span:nth-child(4)")
-
-			switch title2 {
-				case "Weight:":
-					weight := strings.Split(detail1, " ")
-					val, _ := strconv.ParseFloat(weight[0], 32)
-					profile.Weight = float32(val)
-				case "Gender Ratio:":
-					ratios := strings.Split(detail2, " ")
-
-					ratio1 := strings.Split(ratios[0], "%")
-					val1, _ := strconv.ParseFloat(ratio1[0], 32)
-					genderRatio.MaleRatio = float32(val1)
-
-					ratio2 := strings.Split(ratios[2], "%")
-					val2, _ := strconv.ParseFloat(ratio2[0], 32)
-					genderRatio.FemaleRatio = float32(val2)
-					profile.GenderRatio = genderRatio
-				case "Hatch Steps:":
-					profile.HatchSteps, _ = strconv.Atoi(detail2)
-			}
-		})
-		profile.GenderRatio = genderRatio
-
-		damegeWhenAttacked := []DamegeWhenAttacked{}
-		e.ForEach("div.detail-below-header > div.when-attacked > div.when-attacked-row", func(_ int, el *colly.HTMLElement) {
-			monsterType1 := el.ChildText("span.monster-type:nth-child(1)")
-			multiplier1 := el.ChildText("span.monster-multiplier:nth-child(2)")
-			multipliers1 := strings.Split(multiplier1, "x")
-			coefficient1, _ := strconv.ParseFloat(multipliers1[0], 32)
-			
-			damegeWhenAttacked = append(damegeWhenAttacked, DamegeWhenAttacked{
-				Element: monsterType1,
-				Coefficient: float32(coefficient1),
-			})
-
-			monsterType2 := el.ChildText("span.monster-type:nth-child(3)")
-			multiplier2 := el.ChildText("span.monster-multiplier:nth-child(4)")
-			multipliers2 := strings.Split(multiplier2, "x")
-			coefficient2, _ := strconv.ParseFloat(multipliers2[0], 32)
-			
-			damegeWhenAttacked = append(damegeWhenAttacked, DamegeWhenAttacked{
-				Element: monsterType2,
-				Coefficient: float32(coefficient2),
-			})
-		})
-
-		moves := []Moves{}
-		e.ForEach("div.detail-below-header > div.monster-moves > div.moves-row", func(_ int, el *colly.HTMLElement) {
-			fmt.Println("Moves: ")
-		});
-		
-		pokemon := Pokemon{
-			Stats: stats,
-			Profile: profile,
-			DamegeWhenAttacked: damegeWhenAttacked,
-			Moves: moves,
-		}
-
-		e.ForEach("div.detail-header > div.detail-infobox > div.detail-types-and-num > div.detail-types > span.monster-type", func(_ int, el *colly.HTMLElement) {
-			pokemon.Elements = append(pokemon.Elements, el.Text)
-		})
-
-		evolutionLabel := e.ChildText("div.detail-below-header > div.evolutions > div.evolution-row > div.evolution-label > span")
-		labels := strings.Split(evolutionLabel, " ")
-		nextEvolution := labels[3]
-		evolutionStage := labels[len(labels)-1]
-		evolutionStage = strings.Replace(evolutionStage, ".", "", -1)
-		evolutionLevel, _ := strconv.Atoi(evolutionStage)
-		pokemon.EvolutionLevel = evolutionLevel
-		pokemon.NextEvolution = nextEvolution
-
-		js, err := json.MarshalIndent(pokemon, "", "    ")
-		if err != nil {
-			log.Fatal(err)
-		}
-		fmt.Println(string(js))
-
-		pokemons = append(pokemons, pokemon)
-		
-	})
-
-	c.Visit(url)
-}
-
-func refresh(url string){
-	resp, err := http.Get(url)
+func crawlPokemonsDriver(numsOfPokemons int){
+	pw, err := playwright.Run()
 	if err != nil {
-		fmt.Println("Error fetching the page:", err)
+		log.Fatalf("could not start playwright: %v", err)
+	}
+	browser, err := pw.Chromium.Launch();
+	if err != nil {
+		log.Fatalf("could not launch browser: %v", err)
 	}
 
-	// _ , err := io.ReadAll(resp.Body)
-	// if err != nil {
-	// 	fmt.Println("Error reading the response body:", err)
-	// 	resp.Body.Close()
-	// }
+	page, err := browser.NewPage()
+	if err != nil {
+		log.Fatalf("could not create page: %v", err)
+	}
 
-	//fmt.Println("Page content:", string(body))
-	resp.Body.Close()
+	page.Goto(baseURL)
+	
+	for i := range numsOfPokemons{
+		// simulate clicking the button to open the pokemon details
+		locator := fmt.Sprintf("button.sprite-%d", i + 1)
+		button := page.Locator(locator).First()
+		button.Click()
+
+		time.Sleep(1 * time.Second)
+
+		crawlPokemons(page)
+
+		page.Goto(baseURL)
+		page.Reload()
+	}
+
+	if err = browser.Close(); err != nil {
+		log.Fatalf("could not close browser: %v", err)
+	}
+	if err = pw.Stop(); err != nil {
+		log.Fatalf("could not stop Playwright: %v", err)
+	}
+}
+
+func crawlPokemons(page playwright.Page){
+
+	stats := Stats{}
+	entries, _ := page.Locator("div.detail-panel-content > div.detail-header > div.detail-infobox > div.detail-stats > div.detail-stats-row").All()
+	for _, entry := range entries {
+		title, _ := entry.Locator("span:not([class])").TextContent()
+		switch title {
+			case "HP":
+				hp, _ := entry.Locator("span.stat-bar > div.stat-bar-fg").TextContent()
+				stats.HP, _ = strconv.Atoi(hp)
+			case "Attack":
+				attack, _ := entry.Locator("span.stat-bar > div.stat-bar-fg").TextContent()
+				stats.Attack, _ = strconv.Atoi(attack)
+			case "Defense":
+				defense, _ := entry.Locator("span.stat-bar > div.stat-bar-fg").TextContent()
+				stats.Defense, _ = strconv.Atoi(defense)
+			case "Speed":
+				speed, _ := entry.Locator("span.stat-bar > div.stat-bar-fg").TextContent()
+				stats.Speed, _ = strconv.Atoi(speed)
+			case "Sp Atk":
+				sp_Attack, _ := entry.Locator("span.stat-bar > div.stat-bar-fg").TextContent()
+				stats.Sp_Attack, _ = strconv.Atoi(sp_Attack)
+			case "Sp Def":
+				sp_Defense, _ := entry.Locator("span.stat-bar > div.stat-bar-fg").TextContent()
+				stats.Sp_Defense, _ = strconv.Atoi(sp_Defense)
+			default:
+				fmt.Println("Unknown title: ", title)
+		}
+	}
+
+	genderRatio := GenderRatio{}
+
+	profile := Profile{}
+	name, _ := page.Locator("div.detail-panel > h1.detail-panel-header").TextContent()
+	profile.Name = name
+	entries, _ = page.Locator("div.detail-panel-content > div.detail-below-header > div.monster-minutia").All()
+	for _, entry := range entries {
+		title1, _ := entry.Locator("strong:not([class]):nth-child(1)").TextContent()
+		stat1, _ := entry.Locator("span:not([class]):nth-child(2)").TextContent()
+		switch title1 {
+			case "Height:":
+				heights := strings.Split(stat1, " ")
+				height, _ := strconv.ParseFloat(heights[0], 32)
+				profile.Height = float32(height)
+			case "Catch Rate:":
+				catchRates := strings.Split(stat1, "%")
+				catchRate, _ := strconv.ParseFloat(catchRates[0], 32)
+				profile.CatchRate = float32(catchRate)
+			case "Egg Groups:":
+				profile.EggGroup = stat1
+			case "Abilities:":
+				profile.Abilities = stat1
+			default:
+				fmt.Println("Unknown title 1:", title1)
+		}
+
+		title2, _ := entry.Locator("strong:not([class]):nth-child(3)").TextContent()
+		stat2, _ := entry.Locator("span:not([class]):nth-child(4)").TextContent()
+		switch title2 {
+			case "Weight:":
+				weights := strings.Split(stat2, " ")
+				weight, _ := strconv.ParseFloat(weights[0], 32)
+				profile.Weight = float32(weight)
+			case "Gender Ratio:":
+				ratios := strings.Split(stat2, " ")
+
+				maleRatios := strings.Split(ratios[0], "%")
+				maleRatio, _ := strconv.ParseFloat(maleRatios[0], 32)
+				genderRatio.MaleRatio = float32(maleRatio)
+
+				femaleRatios := strings.Split(ratios[2], "%")
+				femaleRatio, _ := strconv.ParseFloat(femaleRatios[0], 32)
+				genderRatio.FemaleRatio = float32(femaleRatio)
+
+				profile.GenderRatio = genderRatio
+			case "Hatch Steps:":
+				profile.HatchSteps, _ = strconv.Atoi(stat2)
+			default:
+				fmt.Println("Unknown title 2:", title2)
+		}
+	}
+
+	damegeWhenAttacked := []DamegeWhenAttacked{}
+	entries, _ = page.Locator("div.when-attacked > div.when-attacked-row").All()
+	for _, entry := range entries {
+		element1, _ := entry.Locator("span.monster-type:nth-child(1)").TextContent()
+		coefficient1, _ := entry.Locator("span.monster-multiplier:nth-child(2)").TextContent()
+		coefficients1 := strings.Split(coefficient1, "x")
+		coef1, _ := strconv.ParseFloat(coefficients1[0], 32)
+
+		element2, _ := entry.Locator("span.monster-type:nth-child(3)").TextContent()
+		coefficient2, _ := entry.Locator("span.monster-multiplier:nth-child(4)").TextContent()
+		coefficients2 := strings.Split(coefficient2, "x")
+		coef2, _ := strconv.ParseFloat(coefficients2[0], 32)
+
+		damegeWhenAttacked = append(damegeWhenAttacked, DamegeWhenAttacked{Element: element1, Coefficient: float32(coef1)})
+		damegeWhenAttacked = append(damegeWhenAttacked, DamegeWhenAttacked{Element: element2, Coefficient: float32(coef2)})
+	}
+
+	pokemon := Pokemon{
+		Stats: stats,
+		Profile: profile,
+		DamegeWhenAttacked: damegeWhenAttacked,
+	}
+	entries, _ = page.Locator("div.evolutions > div.evolution-row").All()
+	for _, entry := range entries {
+		evolutionLabel, _ := entry.Locator("div.evolution-label > span").TextContent()
+		evolutionLabels := strings.Split(evolutionLabel, " ")
+
+		if(evolutionLabels[0] == name){
+			evolutionLevels := strings.Split(evolutionLabels[len(evolutionLabels) - 1], ".")
+			evolutionLevel, _ := strconv.Atoi(evolutionLevels[0])
+			pokemon.EvolutionLevel = evolutionLevel
+
+			nextEvolution := evolutionLabels[3]
+			pokemon.NextEvolution = nextEvolution
+		}
+	}
+
+	moves := []Moves{}
+	entries, _ = page.Locator("div.monster-moves > div.moves-row").All()
+	for _, entry := range entries {
+		// simulate clicking the expand button in the move rows
+		expandButton := page.Locator("div.moves-inner-row > button.dropdown-button").First()
+		expandButton.Click()
+
+		name, _ := entry.Locator("div.moves-inner-row > span:nth-child(2)").TextContent()
+		element, _ := entry.Locator("div.moves-inner-row > span.monster-type").TextContent()
+
+		powers, _ := entry.Locator("div.moves-row-detail > div.moves-row-stats > span:nth-child(1)").TextContent()
+		power := strings.Split(powers, ":")
+
+		acc, _ := entry.Locator("div.moves-row-detail > div.moves-row-stats > span:nth-child(2)").TextContent()
+		accs := strings.Split(acc, ":")
+		accValue := strings.Split(accs[1], "%")
+		accInt, _ := strconv.Atoi(accValue[0])
+
+		pps, _ := entry.Locator("div.moves-row-detail > div.moves-row-stats > span:nth-child(3)").TextContent()
+		ppVal := strings.Split(pps, ":")
+		pp, _ := strconv.Atoi(ppVal[1])
+
+		description, _ := entry.Locator("div.moves-row-detail > div.move-description").TextContent()
+
+		moves = append(moves, Moves{Name: name, Element: element, Power: power[1], Acc: accInt, PP: pp, Description: description})
+	}
+	pokemon.Moves = moves
+
+	entries, _ = page.Locator("div.detail-types > span.monster-type").All()
+	for _, entry := range entries {
+		element, _ := entry.TextContent()
+		pokemon.Elements = append(pokemon.Elements, element)
+	}
+
+	_, err := json.MarshalIndent(pokemon, "", "    ")
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Println(profile)
+
+	pokemons = append(pokemons, pokemon)
 }
