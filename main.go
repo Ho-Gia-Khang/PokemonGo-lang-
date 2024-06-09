@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"log"
+	"os"
 	"strconv"
 	"strings"
 	"time"
@@ -26,7 +27,6 @@ type GenderRatio struct {
 }
 
 type Profile struct {
-	Name 			string `json:"Name"`
 	Height          float32 `json:"Height"`               
 	Weight          float32 `json:"Weight"`              
 	CatchRate 	 float32 `json:"CatchRate"`                  
@@ -51,6 +51,7 @@ type Moves struct {
 }
 
 type Pokemon struct {
+	Name 			string `json:"Name"`
 	Elements           []string `json:"Elements"`            
 	EV                 int `json:"EV"`
 	Stats              Stats `json:"Stats"`                                
@@ -93,15 +94,22 @@ func crawlPokemonsDriver(numsOfPokemons int){
 		// simulate clicking the button to open the pokemon details
 		locator := fmt.Sprintf("button.sprite-%d", i + 1)
 		button := page.Locator(locator).First()
+		time.Sleep(500 * time.Millisecond)
 		button.Click()
 
-		time.Sleep(1 * time.Second)
-
+		fmt.Print("Pokemon ", i + 1, " ")
 		crawlPokemons(page)
 
 		page.Goto(baseURL)
 		page.Reload()
 	}
+
+	// parse the pokemons variable to json file
+	js, err := json.MarshalIndent(pokemons, "", "    ")
+	if err != nil {
+		log.Fatal(err)
+	}
+	os.WriteFile("pokedex.json", js, 0644)
 
 	if err = browser.Close(); err != nil {
 		log.Fatalf("could not close browser: %v", err)
@@ -112,6 +120,7 @@ func crawlPokemonsDriver(numsOfPokemons int){
 }
 
 func crawlPokemons(page playwright.Page){
+	pokemon := Pokemon{}
 
 	stats := Stats{}
 	entries, _ := page.Locator("div.detail-panel-content > div.detail-header > div.detail-infobox > div.detail-stats > div.detail-stats-row").All()
@@ -140,12 +149,13 @@ func crawlPokemons(page playwright.Page){
 				fmt.Println("Unknown title: ", title)
 		}
 	}
+	pokemon.Stats = stats
+
+	name, _ := page.Locator("div.detail-panel > h1.detail-panel-header").TextContent()
+	pokemon.Name = name
 
 	genderRatio := GenderRatio{}
-
 	profile := Profile{}
-	name, _ := page.Locator("div.detail-panel > h1.detail-panel-header").TextContent()
-	profile.Name = name
 	entries, _ = page.Locator("div.detail-panel-content > div.detail-below-header > div.monster-minutia").All()
 	for _, entry := range entries {
 		title1, _ := entry.Locator("strong:not([class]):nth-child(1)").TextContent()
@@ -163,8 +173,6 @@ func crawlPokemons(page playwright.Page){
 				profile.EggGroup = stat1
 			case "Abilities:":
 				profile.Abilities = stat1
-			default:
-				fmt.Println("Unknown title 1:", title1)
 		}
 
 		title2, _ := entry.Locator("strong:not([class]):nth-child(3)").TextContent()
@@ -175,23 +183,27 @@ func crawlPokemons(page playwright.Page){
 				weight, _ := strconv.ParseFloat(weights[0], 32)
 				profile.Weight = float32(weight)
 			case "Gender Ratio:":
-				ratios := strings.Split(stat2, " ")
+				if stat2 == "N/A" {
+					genderRatio.MaleRatio = 0
+					genderRatio.FemaleRatio = 0
+				} else {
+					ratios := strings.Split(stat2, " ")
 
-				maleRatios := strings.Split(ratios[0], "%")
-				maleRatio, _ := strconv.ParseFloat(maleRatios[0], 32)
-				genderRatio.MaleRatio = float32(maleRatio)
+					maleRatios := strings.Split(ratios[0], "%")
+					maleRatio, _ := strconv.ParseFloat(maleRatios[0], 32)
+					genderRatio.MaleRatio = float32(maleRatio)
 
-				femaleRatios := strings.Split(ratios[2], "%")
-				femaleRatio, _ := strconv.ParseFloat(femaleRatios[0], 32)
-				genderRatio.FemaleRatio = float32(femaleRatio)
-
+					femaleRatios := strings.Split(ratios[2], "%")
+					femaleRatio, _ := strconv.ParseFloat(femaleRatios[0], 32)
+					genderRatio.FemaleRatio = float32(femaleRatio)
+				}
+				
 				profile.GenderRatio = genderRatio
 			case "Hatch Steps:":
 				profile.HatchSteps, _ = strconv.Atoi(stat2)
-			default:
-				fmt.Println("Unknown title 2:", title2)
 		}
 	}
+	pokemon.Profile = profile
 
 	damegeWhenAttacked := []DamegeWhenAttacked{}
 	entries, _ = page.Locator("div.when-attacked > div.when-attacked-row").All()
@@ -209,12 +221,8 @@ func crawlPokemons(page playwright.Page){
 		damegeWhenAttacked = append(damegeWhenAttacked, DamegeWhenAttacked{Element: element1, Coefficient: float32(coef1)})
 		damegeWhenAttacked = append(damegeWhenAttacked, DamegeWhenAttacked{Element: element2, Coefficient: float32(coef2)})
 	}
+	pokemon.DamegeWhenAttacked = damegeWhenAttacked
 
-	pokemon := Pokemon{
-		Stats: stats,
-		Profile: profile,
-		DamegeWhenAttacked: damegeWhenAttacked,
-	}
 	entries, _ = page.Locator("div.evolutions > div.evolution-row").All()
 	for _, entry := range entries {
 		evolutionLabel, _ := entry.Locator("div.evolution-label > span").TextContent()
@@ -264,11 +272,7 @@ func crawlPokemons(page playwright.Page){
 		pokemon.Elements = append(pokemon.Elements, element)
 	}
 
-	_, err := json.MarshalIndent(pokemon, "", "    ")
-	if err != nil {
-		log.Fatal(err)
-	}
-	fmt.Println(profile)
+	fmt.Println(name, ": ",profile)
 
 	pokemons = append(pokemons, pokemon)
 }
