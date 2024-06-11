@@ -25,6 +25,7 @@ func main() {
 	defer conn.Close()
 
 	_, err = conn.Write([]byte("CONNECT " + username))
+
 	if err != nil {
 		panic(err)
 	}
