@@ -88,10 +88,12 @@ func crawlPokemons(page playwright.Page) Pokemon {
 			stats.Speed, _ = strconv.Atoi(speed)
 		case "Sp Atk":
 			sp_Attack, _ := entry.Locator("span.stat-bar > div.stat-bar-fg").TextContent()
-			stats.Sp_Attack, _ = strconv.Atoi(sp_Attack)
+			sp_attacks, _ := strconv.ParseFloat(sp_Attack, 32)
+			stats.Sp_Attack = float32(sp_attacks)
 		case "Sp Def":
 			sp_Defense, _ := entry.Locator("span.stat-bar > div.stat-bar-fg").TextContent()
-			stats.Sp_Defense, _ = strconv.Atoi(sp_Defense)
+			sp_defense, _ := strconv.ParseFloat(sp_Defense, 32)
+			stats.Sp_Defense = float32(sp_defense)
 		default:
 			fmt.Println("Unknown title: ", title)
 		}
@@ -197,7 +199,7 @@ func crawlPokemons(page playwright.Page) Pokemon {
 
 func createMoves(pokemon *Pokemon) {
 	normalMove := Moves{Name: "Tackle", Element: []string{""}, Power: pokemon.Stats.Attack, Acc: 100, PP: 35}
-	specialMove := Moves{Name: "Special", Element: pokemon.Elements, Power: pokemon.Stats.Attack, Acc: 100, PP: 25}
+	specialMove := Moves{Name: "Special", Element: pokemon.Elements, Power: pokemon.Stats.Sp_Attack, Acc: 100, PP: 25}
 	pokemon.Moves = append(pokemon.Moves, normalMove)
 	pokemon.Moves = append(pokemon.Moves, specialMove)
 }
