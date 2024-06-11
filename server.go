@@ -85,6 +85,8 @@ type Inventory struct {
 var players = make(map[string]*Player)
 var pokeDexWorld = make(map[string]*Pokedex)
 var Pokeworld [20][20]string
+var inventory1 = make(map[string]*Pokemon)
+var inventory []Pokemon
 
 func randomInt(max int64) (int64, error) {
 	// Generate a random big integer in the range [0, max)
@@ -191,16 +193,6 @@ func printWorld(x, y int) string {
 	return world
 }
 
-// func AddpokemontoJson(pokemon *Pokemon) {
-// 	// Read the JSON file
-// 	data, err := os.ReadFile("poke.json")
-// 	if err != nil {
-// 		fmt.Println("Error reading file:", err)
-// 		return
-
-// 	}
-// }
-
 func PokeCat(Id string, playername string, x int, y int) string {
 	// Check if the coordinates are within the bounds of Pokeworld.
 	if x >= 0 && x < 20 && y >= 0 && y < 20 {
@@ -244,9 +236,40 @@ func PokeCat(Id string, playername string, x int, y int) string {
 	}
 	return ""
 }
-func PokeBat() {
+
+func PokeBat(idStr string, ID1 int, ID2 int, ID3 int) string {
+	player, exists := players[idStr]
+	if !exists {
+		fmt.Println("Player does not exist.")
+	}
+	// Check if the player has at least 3 Pokemon in their inventory.
+	if len(player.Inventory) < 3 {
+		fmt.Println("Player does not have enough Pokemon.")
+		return ""
+	}
+	// Check if the player has the specified Pokemon in their inventory.
+	if ID1 < 0 || ID1-1 >= len(player.Inventory) || ID2 < 0 || ID2-1 >= len(player.Inventory) || ID3 < 0 || ID3-1 >= len(player.Inventory) {
+		fmt.Println("Invalid Pokemon ID.")
+		return ""
+	}
+	// Get the specified Pokemon from the player's inventory.
+	pokemon1 := player.Inventory[ID1-1].MyPokemon[0]
+	pokemon2 := player.Inventory[ID2-1].MyPokemon[0]
+	pokemon3 := player.Inventory[ID3-1].MyPokemon[0]
+	// Check if the specified Pokemon are valid.
+	if pokemon1.Name == "" || pokemon2.Name == "" || pokemon3.Name == "" {
+		fmt.Println("Invalid Pokemon.")
+		return ""
+	}
+
+	// Simulate a Pokemon battle between the specified Pokemon.
+	fmt.Println("Pokemon battle:", pokemon1.Name, pokemon2.Name, pokemon3.Name)
+	return ""
 
 }
+
+// Use the assigned variables pokemon1, pokemon2, and pokemon3 as needed.
+
 func movePlayer(idStr string, direction string) string {
 	player, exists := players[idStr]
 	if !exists {
@@ -349,8 +372,18 @@ func main() {
 				if err != nil {
 					fmt.Println("Error sending connect message to client:", err)
 				}
-
 			}
+		case "PokeBat":
+			ID1, _ := strconv.Atoi(parts[1])
+			ID2, _ := strconv.Atoi(parts[2])
+			ID3, _ := strconv.Atoi(parts[3])
+			PokeBat(idStr, ID1, ID2, ID3)
+		case "Switch":
+			ID1, _ := strconv.Atoi(parts[1])
+			ID2, _ := strconv.Atoi(parts[2])
+			ID3, _ := strconv.Atoi(parts[3])
+			PokeBat(idStr, ID1, ID2, ID3)
+
 		}
 
 	}
