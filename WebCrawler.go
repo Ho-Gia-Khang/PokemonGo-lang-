@@ -12,6 +12,13 @@ import (
 	"github.com/playwright-community/playwright-go"
 )
 
+const (
+	numberOfPokemons = 649
+	baseURL          = "https://pokedex.org/#/"
+)
+
+var pokemons = []Pokemon{}
+
 func crawlPokemonsDriver(numsOfPokemons int) {
 
 	pw, err := playwright.Run()
