@@ -47,6 +47,8 @@ type Pokemon struct {
 	EvolutionLevel     int                  `json:"EvolutionLevel"`
 	NextEvolution      string               `json:"NextEvolution"`
 	Moves              []Moves              `json:"Moves"`
+	Experience         int                  `json:"Experience"`
+	Level              int                  `json:"Level"`
 }
 
 const (
