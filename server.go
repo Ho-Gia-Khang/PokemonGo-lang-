@@ -9,6 +9,7 @@ import (
 	"os"
 	"strconv"
 	"strings"
+	"sync"
 )
 
 type Stats struct {
@@ -73,6 +74,7 @@ type Player struct {
 	PlayerCoordinateX int         `json:"PlayerCoordinateX"`
 	PlayerCoordinateY int         `json:"PlayerCoordinateY"`
 	Inventory         []Inventory `json:"Inventory"`
+	sync.Mutex
 }
 type Inventory struct {
 	MyPokemon []Pokemon `json:"Pokemon"`
@@ -92,6 +94,8 @@ func randomInt(max int64) (int64, error) {
 	return n.Int64(), nil // Convert the big integer to int64 and return
 }
 func PassingPokemontoInventory(pokemon *Pokemon, player *Player) {
+	player.Lock() // Lock the player instance
+	defer player.Unlock()
 	player.Inventory = append(player.Inventory, Inventory{MyPokemon: []Pokemon{*pokemon}})
 
 }
@@ -204,16 +208,29 @@ func PokeCat(Id string, playername string, x int, y int) string {
 		if Pokeworld[x][y] == "" || Pokeworld[x][y] == "M" {
 			// Place the player at the specified coordinates.
 			Pokeworld[x][y] = Id
-			players[Id] = &Player{
-				Name:              playername,
-				ID:                Id,
-				PlayerCoordinateX: x,
-				PlayerCoordinateY: y,
+			if player, exists := players[Id]; exists {
+				// Player exists, update the existing player's fields
+				player.Name = playername
+				player.PlayerCoordinateX = x
+				player.PlayerCoordinateY = y
+				for _, pokedex := range pokeDexWorld {
+					CheckForPokemonEncounter(players[Id], pokedex)
+				}
+				PassingPlayertoJson("pokeInventory.json", players[Id])
+			} else {
+				// Player does not exist, create a new one
+				players[Id] = &Player{
+					Name:              playername,
+					ID:                Id,
+					PlayerCoordinateX: x,
+					PlayerCoordinateY: y,
+				}
+				for _, pokedex := range pokeDexWorld {
+					CheckForPokemonEncounter(players[Id], pokedex)
+				}
+				PassingPlayertoJson("pokeInventory.json", players[Id])
 			}
-			for _, pokedex := range pokeDexWorld {
-				CheckForPokemonEncounter(players[Id], pokedex)
-			}
-			PassingPlayertoJson("pokeInventory.json", players[Id])
+
 			fmt.Println("Player placed at", x, y)
 			world := printWorld(x, y)
 			return world
@@ -241,7 +258,9 @@ func movePlayer(idStr string, direction string) string {
 	deltaY := map[string]int{"Left": -1, "Right": 1}[direction]
 	newY := player.PlayerCoordinateY + deltaY
 	Pokeworld[player.PlayerCoordinateX][player.PlayerCoordinateY] = ""
+
 	PokeK := PokeCat(idStr, player.Name, newX, newY)
+	players[idStr].Inventory = append(players[idStr].Inventory, Inventory{MyPokemon: []Pokemon{}})
 	return PokeK
 
 }
