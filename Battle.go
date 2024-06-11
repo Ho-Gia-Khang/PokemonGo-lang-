@@ -7,15 +7,16 @@ func chooseAttack(pokemon Pokemon) Moves {
 	return pokemon.Moves[n]
 }
 
-func attack(defender *Pokemon, move Moves) {
+func attack(attacker *Pokemon, defender *Pokemon) {
 	// Calculate the damage
 	var dmg float32
+	var attackerMove = chooseAttack(*attacker)
 
-	switch move.Name{
+	switch attackerMove.Name{
 		case "Tackle":
-			dmg = move.Power - defender.Stats.Defense
+			dmg = attackerMove.Power - defender.Stats.Defense
 		case "Special":
-			attackingElement := move.Element
+			attackingElement := attackerMove.Element
 			dmgWhenAttacked := defender.DamegeWhenAttacked
 			defendingElement := []string{}
 			for _, element := range dmgWhenAttacked {
@@ -31,7 +32,7 @@ func attack(defender *Pokemon, move Moves) {
 				}
 			}
 
-			dmg = move.Power * highestCoefficient - defender.Stats.Defense
+			dmg = attackerMove.Power * highestCoefficient - defender.Stats.Sp_Defense
 	}
 
 	defender.Stats.HP -= dmg

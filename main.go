@@ -5,8 +5,8 @@ type Stats struct {
 	Attack     float32 `json:"Attack"`
 	Defense    float32 `json:"Defense"`
 	Speed      int     `json:"Speed"`
-	Sp_Attack  int     `json:"Sp_Attack"`
-	Sp_Defense int     `json:"Sp_Defense"`
+	Sp_Attack  float32 `json:"Sp_Attack"`
+	Sp_Defense float32 `json:"Sp_Defense"`
 }
 
 type GenderRatio struct {
