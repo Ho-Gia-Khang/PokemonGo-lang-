@@ -79,6 +79,7 @@ type Player struct {
 type Inventory struct {
 	MyPokemon []Pokemon `json:"Pokemon"`
 	Level     int       `json:"Level"`
+	ID        int       `json:"ID"`
 }
 
 var players = make(map[string]*Player)
@@ -96,8 +97,7 @@ func randomInt(max int64) (int64, error) {
 func PassingPokemontoInventory(pokemon *Pokemon, player *Player) {
 	player.Lock() // Lock the player instance
 	defer player.Unlock()
-	player.Inventory = append(player.Inventory, Inventory{MyPokemon: []Pokemon{*pokemon}})
-
+	player.Inventory = append(player.Inventory, Inventory{MyPokemon: []Pokemon{*pokemon}, ID: len(player.Inventory) + 1, Level: 1})
 }
 func PassingPlayertoJson(filename string, player *Player) {
 	data, err := os.ReadFile(filename)
@@ -260,7 +260,6 @@ func movePlayer(idStr string, direction string) string {
 	Pokeworld[player.PlayerCoordinateX][player.PlayerCoordinateY] = ""
 
 	PokeK := PokeCat(idStr, player.Name, newX, newY)
-	players[idStr].Inventory = append(players[idStr].Inventory, Inventory{MyPokemon: []Pokemon{}})
 	return PokeK
 
 }
@@ -344,13 +343,14 @@ func main() {
 				fmt.Println("Error sending connect message to client:", err)
 			}
 		case "Inventory":
-			// Display player inventory...
-			Inv := fmt.Sprintln("Player Inventory:%s", players[idStr].Inventory)
-			_, err := conn.WriteToUDP([]byte(Inv), addr)
-			if err != nil {
-				fmt.Println("Error sending connect message to client:", err)
-			}
+			for _, inv := range players[idStr].Inventory {
+				inventoryDetails := fmt.Sprintf("Player Inventory: Name: %s, Level: %d, ID: %d", inv.MyPokemon[0].Name, inv.Level, inv.ID)
+				_, err := conn.WriteToUDP([]byte(inventoryDetails), addr)
+				if err != nil {
+					fmt.Println("Error sending connect message to client:", err)
+				}
 
+			}
 		}
 
 	}

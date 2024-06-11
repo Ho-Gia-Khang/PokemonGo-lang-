@@ -1,1063 +1,375 @@
 [
   {
     "Name": "Tin",
-    "ID": "12700159702",
-    "PlayerCoordinateX": 6,
+    "ID": "12700164796",
+    "PlayerCoordinateX": 5,
     "PlayerCoordinateY": 2,
-    "Inventory": null
-  },
-  {
-    "Name": "Minh",
-    "ID": "12700150501",
-    "PlayerCoordinateX": 4,
-    "PlayerCoordinateY": 6,
     "Inventory": null
   },
   {
     "Name": "Tin",
-    "ID": "12700159702",
-    "PlayerCoordinateX": 7,
-    "PlayerCoordinateY": 2,
-    "Inventory": [
-      {
-        "Pokemon": [
-          {
-            "Name": "Nidorino",
-            "Elements": [
-              "poison"
-            ],
-            "EV": 0,
-            "Stats": {
-              "HP": 45,
-              "Attack": 72,
-              "Defense": 57,
-              "Speed": 65,
-              "Sp_Attack": 55,
-              "Sp_Defense": 55
-            },
-            "Profile": {
-              "Height": 0.9,
-              "Weight": 19.5,
-              "CatchRate": 0,
-              "GenderRatio": {
-                "MaleRatio": 100,
-                "FemaleRatio": 0
-              },
-              "EggGroup": "Monster, Field",
-              "HatchSteps": 5100,
-              "Abilities": "Poison-point, Hustle, Rivalry"
-            },
-            "DamegeWhenAttacked": [
-              {
-                "Element": "ground",
-                "Coefficient": 2
-              },
-              {
-                "Element": "fighting",
-                "Coefficient": 0.5
-              },
-              {
-                "Element": "psychic",
-                "Coefficient": 2
-              },
-              {
-                "Element": "poison",
-                "Coefficient": 0.5
-              },
-              {
-                "Element": "",
-                "Coefficient": 0
-              },
-              {
-                "Element": "bug",
-                "Coefficient": 0.5
-              },
-              {
-                "Element": "",
-                "Coefficient": 0
-              },
-              {
-                "Element": "grass",
-                "Coefficient": 0.5
-              },
-              {
-                "Element": "",
-                "Coefficient": 0
-              },
-              {
-                "Element": "fairy",
-                "Coefficient": 0.5
-              }
-            ],
-            "EvolutionLevel": 0,
-            "NextEvolution": "Nidoking",
-            "Moves": []
-          }
-        ],
-        "Level": 0
-      }
-    ]
-  },
-  {
-    "Name": "Minh",
-    "ID": "12700150501",
-    "PlayerCoordinateX": 5,
-    "PlayerCoordinateY": 6,
-    "Inventory": null
-  },
-  {
-    "Name": "Minh",
-    "ID": "12700150501",
+    "ID": "12700164796",
     "PlayerCoordinateX": 6,
-    "PlayerCoordinateY": 6,
+    "PlayerCoordinateY": 2,
     "Inventory": null
   },
   {
-    "Name": "Minh",
-    "ID": "12700150501",
-    "PlayerCoordinateX": 7,
-    "PlayerCoordinateY": 6,
+    "Name": "Tin",
+    "ID": "12700164796",
+    "PlayerCoordinateX": 6,
+    "PlayerCoordinateY": 1,
     "Inventory": [
       {
         "Pokemon": [
           {
-            "Name": "Slaking",
+            "Name": "Quilava",
             "Elements": [
-              "normal"
+              "fire"
             ],
             "EV": 0,
             "Stats": {
               "HP": 45,
-              "Attack": 160,
-              "Defense": 100,
-              "Speed": 100,
-              "Sp_Attack": 95,
+              "Attack": 64,
+              "Defense": 58,
+              "Speed": 80,
+              "Sp_Attack": 80,
               "Sp_Defense": 65
             },
             "Profile": {
-              "Height": 2,
-              "Weight": 130.5,
-              "CatchRate": 0,
-              "GenderRatio": {
-                "MaleRatio": 50,
-                "FemaleRatio": 50
-              },
-              "EggGroup": "Field",
-              "HatchSteps": 3825,
-              "Abilities": "Truant"
-            },
-            "DamegeWhenAttacked": [
-              {
-                "Element": "fighting",
-                "Coefficient": 2
-              },
-              {
-                "Element": "ghost",
-                "Coefficient": 0
-              }
-            ],
-            "EvolutionLevel": 0,
-            "NextEvolution": "",
-            "Moves": []
-          }
-        ],
-        "Level": 0
-      }
-    ]
-  },
-  {
-    "Name": "Tin",
-    "ID": "12700151308",
-    "PlayerCoordinateX": 9,
-    "PlayerCoordinateY": 2,
-    "Inventory": null
-  },
-  {
-    "Name": "Tin",
-    "ID": "12700151308",
-    "PlayerCoordinateX": 9,
-    "PlayerCoordinateY": 3,
-    "Inventory": null
-  },
-  {
-    "Name": "Tin",
-    "ID": "12700151308",
-    "PlayerCoordinateX": 9,
-    "PlayerCoordinateY": 4,
-    "Inventory": null
-  },
-  {
-    "Name": "Tin",
-    "ID": "12700151308",
-    "PlayerCoordinateX": 9,
-    "PlayerCoordinateY": 5,
-    "Inventory": null
-  },
-  {
-    "Name": "Tin",
-    "ID": "12700151308",
-    "PlayerCoordinateX": 9,
-    "PlayerCoordinateY": 6,
-    "Inventory": null
-  },
-  {
-    "Name": "Tin",
-    "ID": "12700151308",
-    "PlayerCoordinateX": 9,
-    "PlayerCoordinateY": 7,
-    "Inventory": null
-  },
-  {
-    "Name": "Tin",
-    "ID": "12700151308",
-    "PlayerCoordinateX": 9,
-    "PlayerCoordinateY": 8,
-    "Inventory": null
-  },
-  {
-    "Name": "Tin",
-    "ID": "12700151308",
-    "PlayerCoordinateX": 9,
-    "PlayerCoordinateY": 9,
-    "Inventory": null
-  },
-  {
-    "Name": "Tin",
-    "ID": "12700151308",
-    "PlayerCoordinateX": 9,
-    "PlayerCoordinateY": 10,
-    "Inventory": null
-  },
-  {
-    "Name": "Tin",
-    "ID": "12700151308",
-    "PlayerCoordinateX": 9,
-    "PlayerCoordinateY": 11,
-    "Inventory": null
-  },
-  {
-    "Name": "Tin",
-    "ID": "12700151308",
-    "PlayerCoordinateX": 9,
-    "PlayerCoordinateY": 12,
-    "Inventory": null
-  },
-  {
-    "Name": "Tin",
-    "ID": "12700151308",
-    "PlayerCoordinateX": 9,
-    "PlayerCoordinateY": 13,
-    "Inventory": [
-      {
-        "Pokemon": [
-          {
-            "Name": "Rattata",
-            "Elements": [
-              "normal"
-            ],
-            "EV": 0,
-            "Stats": {
-              "HP": 30,
-              "Attack": 56,
-              "Defense": 35,
-              "Speed": 72,
-              "Sp_Attack": 25,
-              "Sp_Defense": 35
-            },
-            "Profile": {
-              "Height": 0.3,
-              "Weight": 3.5,
-              "CatchRate": 0,
-              "GenderRatio": {
-                "MaleRatio": 50,
-                "FemaleRatio": 50
-              },
-              "EggGroup": "Field",
-              "HatchSteps": 3825,
-              "Abilities": "Run-away, Hustle, Guts"
-            },
-            "DamegeWhenAttacked": [
-              {
-                "Element": "fighting",
-                "Coefficient": 2
-              },
-              {
-                "Element": "ghost",
-                "Coefficient": 0
-              }
-            ],
-            "EvolutionLevel": 20,
-            "NextEvolution": "Raticate",
-            "Moves": []
-          }
-        ],
-        "Level": 0
-      }
-    ]
-  },
-  {
-    "Name": "Tin",
-    "ID": "12700164706",
-    "PlayerCoordinateX": 9,
-    "PlayerCoordinateY": 3,
-    "Inventory": null
-  },
-  {
-    "Name": "Tin",
-    "ID": "12700164706",
-    "PlayerCoordinateX": 8,
-    "PlayerCoordinateY": 3,
-    "Inventory": null
-  },
-  {
-    "Name": "Tin",
-    "ID": "12700164706",
-    "PlayerCoordinateX": 8,
-    "PlayerCoordinateY": 2,
-    "Inventory": [
-      {
-        "Pokemon": [
-          {
-            "Name": "Gengar",
-            "Elements": [
-              "ghost",
-              "poison"
-            ],
-            "EV": 0,
-            "Stats": {
-              "HP": 60,
-              "Attack": 65,
-              "Defense": 60,
-              "Speed": 110,
-              "Sp_Attack": 130,
-              "Sp_Defense": 75
-            },
-            "Profile": {
-              "Height": 1.5,
-              "Weight": 40.5,
-              "CatchRate": 0,
-              "GenderRatio": {
-                "MaleRatio": 50,
-                "FemaleRatio": 50
-              },
-              "EggGroup": "Amorphous",
-              "HatchSteps": 5100,
-              "Abilities": "Levitate"
-            },
-            "DamegeWhenAttacked": [
-              {
-                "Element": "ground",
-                "Coefficient": 2
-              },
-              {
-                "Element": "grass",
-                "Coefficient": 0.5
-              },
-              {
-                "Element": "psychic",
-                "Coefficient": 2
-              },
-              {
-                "Element": "fairy",
-                "Coefficient": 0.5
-              },
-              {
-                "Element": "ghost",
-                "Coefficient": 2
-              },
-              {
-                "Element": "poison",
-                "Coefficient": 0.25
-              },
-              {
-                "Element": "dark",
-                "Coefficient": 2
-              },
-              {
-                "Element": "bug",
-                "Coefficient": 0.25
-              },
-              {
-                "Element": "",
-                "Coefficient": 0
-              },
-              {
-                "Element": "fighting",
-                "Coefficient": 0
-              },
-              {
-                "Element": "",
-                "Coefficient": 0
-              },
-              {
-                "Element": "normal",
-                "Coefficient": 0
-              }
-            ],
-            "EvolutionLevel": 0,
-            "NextEvolution": "",
-            "Moves": []
-          }
-        ],
-        "Level": 0
-      }
-    ]
-  },
-  {
-    "Name": "Tin",
-    "ID": "12700155583",
-    "PlayerCoordinateX": 5,
-    "PlayerCoordinateY": 2,
-    "Inventory": null
-  },
-  {
-    "Name": "Tin",
-    "ID": "12700155583",
-    "PlayerCoordinateX": 6,
-    "PlayerCoordinateY": 2,
-    "Inventory": null
-  },
-  {
-    "Name": "Tin",
-    "ID": "12700155583",
-    "PlayerCoordinateX": 6,
-    "PlayerCoordinateY": 1,
-    "Inventory": null
-  },
-  {
-    "Name": "Tin",
-    "ID": "12700155583",
-    "PlayerCoordinateX": 6,
-    "PlayerCoordinateY": 0,
-    "Inventory": [
-      {
-        "Pokemon": [
-          {
-            "Name": "Dwebble",
-            "Elements": [
-              "bug",
-              "rock"
-            ],
-            "EV": 0,
-            "Stats": {
-              "HP": 50,
-              "Attack": 65,
-              "Defense": 85,
-              "Speed": 55,
-              "Sp_Attack": 35,
-              "Sp_Defense": 35
-            },
-            "Profile": {
-              "Height": 0.3,
-              "Weight": 14.5,
-              "CatchRate": 0,
-              "GenderRatio": {
-                "MaleRatio": 50,
-                "FemaleRatio": 50
-              },
-              "EggGroup": "Bug, Mineral",
-              "HatchSteps": 5100,
-              "Abilities": "Sturdy, Shell-armor, Weak-armor"
-            },
-            "DamegeWhenAttacked": [
-              {
-                "Element": "steel",
-                "Coefficient": 2
-              },
-              {
-                "Element": "normal",
-                "Coefficient": 0.5
-              },
-              {
-                "Element": "water",
-                "Coefficient": 2
-              },
-              {
-                "Element": "poison",
-                "Coefficient": 0.5
-              },
-              {
-                "Element": "rock",
-                "Coefficient": 2
-              },
-              {
-                "Element": "",
-                "Coefficient": 0
-              }
-            ],
-            "EvolutionLevel": 34,
-            "NextEvolution": "Crustle",
-            "Moves": []
-          }
-        ],
-        "Level": 0
-      }
-    ]
-  },
-  {
-    "Name": "Tin",
-    "ID": "12700155583",
-    "PlayerCoordinateX": 7,
-    "PlayerCoordinateY": 0,
-    "Inventory": null
-  },
-  {
-    "Name": "Tin",
-    "ID": "12700155583",
-    "PlayerCoordinateX": 8,
-    "PlayerCoordinateY": 0,
-    "Inventory": null
-  },
-  {
-    "Name": "Tin",
-    "ID": "12700155583",
-    "PlayerCoordinateX": 9,
-    "PlayerCoordinateY": 0,
-    "Inventory": [
-      {
-        "Pokemon": [
-          {
-            "Name": "Emolga",
-            "Elements": [
-              "electric",
-              "flying"
-            ],
-            "EV": 0,
-            "Stats": {
-              "HP": 55,
-              "Attack": 75,
-              "Defense": 60,
-              "Speed": 103,
-              "Sp_Attack": 75,
-              "Sp_Defense": 60
-            },
-            "Profile": {
-              "Height": 0.4,
-              "Weight": 5,
-              "CatchRate": 0,
-              "GenderRatio": {
-                "MaleRatio": 50,
-                "FemaleRatio": 50
-              },
-              "EggGroup": "Field",
-              "HatchSteps": 5100,
-              "Abilities": "Static, Motor-drive"
-            },
-            "DamegeWhenAttacked": [
-              {
-                "Element": "ground",
-                "Coefficient": 2
-              },
-              {
-                "Element": "fighting",
-                "Coefficient": 0.5
-              },
-              {
-                "Element": "rock",
-                "Coefficient": 2
-              },
-              {
-                "Element": "bug",
-                "Coefficient": 0.5
-              },
-              {
-                "Element": "ice",
-                "Coefficient": 2
-              },
-              {
-                "Element": "grass",
-                "Coefficient": 0.5
-              },
-              {
-                "Element": "",
-                "Coefficient": 0
-              },
-              {
-                "Element": "flying",
-                "Coefficient": 0.5
-              },
-              {
-                "Element": "",
-                "Coefficient": 0
-              },
-              {
-                "Element": "steel",
-                "Coefficient": 0.5
-              }
-            ],
-            "EvolutionLevel": 0,
-            "NextEvolution": "",
-            "Moves": []
-          }
-        ],
-        "Level": 0
-      }
-    ]
-  },
-  {
-    "Name": "Tin",
-    "ID": "12700150762",
-    "PlayerCoordinateX": 0,
-    "PlayerCoordinateY": 6,
-    "Inventory": []
-  },
-  {
-    "Name": "Tin",
-    "ID": "12700150762",
-    "PlayerCoordinateX": 1,
-    "PlayerCoordinateY": 6,
-    "Inventory": []
-  },
-  {
-    "Name": "Tin",
-    "ID": "12700150762",
-    "PlayerCoordinateX": 2,
-    "PlayerCoordinateY": 6,
-    "Inventory": []
-  },
-  {
-    "Name": "Tin",
-    "ID": "12700150762",
-    "PlayerCoordinateX": 3,
-    "PlayerCoordinateY": 6,
-    "Inventory": []
-  },
-  {
-    "Name": "Tin",
-    "ID": "12700150762",
-    "PlayerCoordinateX": 3,
-    "PlayerCoordinateY": 5,
-    "Inventory": []
-  },
-  {
-    "Name": "Tin",
-    "ID": "12700150762",
-    "PlayerCoordinateX": 3,
-    "PlayerCoordinateY": 4,
-    "Inventory": []
-  },
-  {
-    "Name": "Tin",
-    "ID": "12700150762",
-    "PlayerCoordinateX": 3,
-    "PlayerCoordinateY": 3,
-    "Inventory": [
-      {
-        "Pokemon": [
-          {
-            "Name": "Pichu",
-            "Elements": [
-              "electric"
-            ],
-            "EV": 0,
-            "Stats": {
-              "HP": 20,
-              "Attack": 40,
-              "Defense": 15,
-              "Speed": 60,
-              "Sp_Attack": 35,
-              "Sp_Defense": 35
-            },
-            "Profile": {
-              "Height": 0.3,
-              "Weight": 2,
-              "CatchRate": 0,
-              "GenderRatio": {
-                "MaleRatio": 50,
-                "FemaleRatio": 50
-              },
-              "EggGroup": "No Eggs",
-              "HatchSteps": 2550,
-              "Abilities": "Static, Lightningrod"
-            },
-            "DamegeWhenAttacked": [
-              {
-                "Element": "ground",
-                "Coefficient": 2
-              },
-              {
-                "Element": "flying",
-                "Coefficient": 0.5
-              },
-              {
-                "Element": "",
-                "Coefficient": 0
-              },
-              {
-                "Element": "steel",
-                "Coefficient": 0.5
-              },
-              {
-                "Element": "",
-                "Coefficient": 0
-              },
-              {
-                "Element": "electric",
-                "Coefficient": 0.5
-              }
-            ],
-            "EvolutionLevel": 0,
-            "NextEvolution": "Pikachu",
-            "Moves": []
-          }
-        ],
-        "Level": 0
-      }
-    ]
-  },
-  {
-    "Name": "Tin",
-    "ID": "12700150762",
-    "PlayerCoordinateX": 4,
-    "PlayerCoordinateY": 3,
-    "Inventory": []
-  },
-  {
-    "Name": "Tin",
-    "ID": "12700150762",
-    "PlayerCoordinateX": 4,
-    "PlayerCoordinateY": 4,
-    "Inventory": []
-  },
-  {
-    "Name": "Tin",
-    "ID": "12700150762",
-    "PlayerCoordinateX": 4,
-    "PlayerCoordinateY": 5,
-    "Inventory": [
-      {
-        "Pokemon": [
-          {
-            "Name": "Kricketot",
-            "Elements": [
-              "bug"
-            ],
-            "EV": 0,
-            "Stats": {
-              "HP": 37,
-              "Attack": 25,
-              "Defense": 41,
-              "Speed": 25,
-              "Sp_Attack": 25,
-              "Sp_Defense": 41
-            },
-            "Profile": {
-              "Height": 0.3,
-              "Weight": 2.2,
-              "CatchRate": 0,
-              "GenderRatio": {
-                "MaleRatio": 50,
-                "FemaleRatio": 50
-              },
-              "EggGroup": "Bug",
-              "HatchSteps": 3825,
-              "Abilities": "Run-away, Shed-skin"
-            },
-            "DamegeWhenAttacked": [
-              {
-                "Element": "flying",
-                "Coefficient": 2
-              },
-              {
-                "Element": "fighting",
-                "Coefficient": 0.5
-              },
-              {
-                "Element": "rock",
-                "Coefficient": 2
-              },
-              {
-                "Element": "ground",
-                "Coefficient": 0.5
-              },
-              {
-                "Element": "fire",
-                "Coefficient": 2
-              },
-              {
-                "Element": "grass",
-                "Coefficient": 0.5
-              }
-            ],
-            "EvolutionLevel": 10,
-            "NextEvolution": "Kricketune",
-            "Moves": []
-          }
-        ],
-        "Level": 0
-      }
-    ]
-  },
-  {
-    "Name": "Tin",
-    "ID": "12700163944",
-    "PlayerCoordinateX": 7,
-    "PlayerCoordinateY": 8,
-    "Inventory": null
-  },
-  {
-    "Name": "Tin",
-    "ID": "12700163944",
-    "PlayerCoordinateX": 7,
-    "PlayerCoordinateY": 9,
-    "Inventory": null
-  },
-  {
-    "Name": "Tin",
-    "ID": "12700163944",
-    "PlayerCoordinateX": 7,
-    "PlayerCoordinateY": 10,
-    "Inventory": [
-      {
-        "Pokemon": [
-          {
-            "Name": "Bayleef",
-            "Elements": [
-              "grass"
-            ],
-            "EV": 0,
-            "Stats": {
-              "HP": 60,
-              "Attack": 62,
-              "Defense": 80,
-              "Speed": 60,
-              "Sp_Attack": 63,
-              "Sp_Defense": 80
-            },
-            "Profile": {
-              "Height": 1.2,
-              "Weight": 15.8,
+              "Height": 0.9,
+              "Weight": 19,
               "CatchRate": 0,
               "GenderRatio": {
                 "MaleRatio": 87.5,
                 "FemaleRatio": 12.5
               },
-              "EggGroup": "Monster, Grass",
+              "EggGroup": "Field",
               "HatchSteps": 5100,
-              "Abilities": "Overgrow, Leaf-guard"
+              "Abilities": "Flash-fire, Blaze"
             },
             "DamegeWhenAttacked": [
               {
-                "Element": "flying",
+                "Element": "ground",
                 "Coefficient": 2
               },
               {
-                "Element": "water",
+                "Element": "steel",
                 "Coefficient": 0.5
               },
               {
-                "Element": "poison",
+                "Element": "rock",
                 "Coefficient": 2
-              },
-              {
-                "Element": "grass",
-                "Coefficient": 0.5
-              },
-              {
-                "Element": "bug",
-                "Coefficient": 2
-              },
-              {
-                "Element": "electric",
-                "Coefficient": 0.5
               },
               {
                 "Element": "fire",
-                "Coefficient": 2
+                "Coefficient": 0.5
               },
               {
-                "Element": "",
-                "Coefficient": 0
+                "Element": "water",
+                "Coefficient": 2
               },
               {
                 "Element": "ice",
-                "Coefficient": 2
+                "Coefficient": 0.5
               },
               {
                 "Element": "",
                 "Coefficient": 0
+              },
+              {
+                "Element": "fairy",
+                "Coefficient": 0.5
               }
             ],
-            "EvolutionLevel": 32,
-            "NextEvolution": "Meganium",
+            "EvolutionLevel": 36,
+            "NextEvolution": "Typhlosion",
             "Moves": []
           }
         ],
-        "Level": 0
+        "Level": 1,
+        "ID": 1
       }
     ]
   },
   {
     "Name": "Tin",
-    "ID": "12700163944",
-    "PlayerCoordinateX": 8,
-    "PlayerCoordinateY": 10,
-    "Inventory": null
-  },
-  {
-    "Name": "Tin",
-    "ID": "12700163944",
-    "PlayerCoordinateX": 8,
-    "PlayerCoordinateY": 11,
-    "Inventory": null
-  },
-  {
-    "Name": "Tin",
-    "ID": "12700163944",
-    "PlayerCoordinateX": 8,
-    "PlayerCoordinateY": 12,
-    "Inventory": null
-  },
-  {
-    "Name": "Tin",
-    "ID": "12700163944",
-    "PlayerCoordinateX": 8,
-    "PlayerCoordinateY": 13,
+    "ID": "12700164796",
+    "PlayerCoordinateX": 7,
+    "PlayerCoordinateY": 1,
     "Inventory": [
       {
         "Pokemon": [
           {
-            "Name": "Raticate",
+            "Name": "Quilava",
             "Elements": [
-              "normal"
+              "fire"
             ],
             "EV": 0,
             "Stats": {
-              "HP": 55,
-              "Attack": 81,
-              "Defense": 60,
-              "Speed": 97,
-              "Sp_Attack": 50,
-              "Sp_Defense": 70
+              "HP": 45,
+              "Attack": 64,
+              "Defense": 58,
+              "Speed": 80,
+              "Sp_Attack": 80,
+              "Sp_Defense": 65
             },
             "Profile": {
-              "Height": 0.7,
-              "Weight": 18.5,
+              "Height": 0.9,
+              "Weight": 19,
               "CatchRate": 0,
               "GenderRatio": {
-                "MaleRatio": 50,
-                "FemaleRatio": 50
+                "MaleRatio": 87.5,
+                "FemaleRatio": 12.5
               },
               "EggGroup": "Field",
-              "HatchSteps": 3825,
-              "Abilities": "Run-away, Hustle, Guts"
+              "HatchSteps": 5100,
+              "Abilities": "Flash-fire, Blaze"
             },
             "DamegeWhenAttacked": [
               {
-                "Element": "fighting",
+                "Element": "ground",
                 "Coefficient": 2
               },
               {
-                "Element": "ghost",
+                "Element": "steel",
+                "Coefficient": 0.5
+              },
+              {
+                "Element": "rock",
+                "Coefficient": 2
+              },
+              {
+                "Element": "fire",
+                "Coefficient": 0.5
+              },
+              {
+                "Element": "water",
+                "Coefficient": 2
+              },
+              {
+                "Element": "ice",
+                "Coefficient": 0.5
+              },
+              {
+                "Element": "",
                 "Coefficient": 0
+              },
+              {
+                "Element": "fairy",
+                "Coefficient": 0.5
               }
             ],
-            "EvolutionLevel": 0,
-            "NextEvolution": "",
+            "EvolutionLevel": 36,
+            "NextEvolution": "Typhlosion",
             "Moves": []
           }
         ],
-        "Level": 0
+        "Level": 1,
+        "ID": 1
       }
     ]
   },
   {
     "Name": "Tin",
-    "ID": "12700155501",
-    "PlayerCoordinateX": 2,
-    "PlayerCoordinateY": 1,
-    "Inventory": null
-  },
-  {
-    "Name": "Tin",
-    "ID": "12700155501",
-    "PlayerCoordinateX": 3,
-    "PlayerCoordinateY": 1,
-    "Inventory": null
-  },
-  {
-    "Name": "Tin",
-    "ID": "12700155501",
-    "PlayerCoordinateX": 4,
-    "PlayerCoordinateY": 1,
-    "Inventory": null
-  },
-  {
-    "Name": "Tin",
-    "ID": "12700155501",
-    "PlayerCoordinateX": 4,
+    "ID": "12700164796",
+    "PlayerCoordinateX": 7,
     "PlayerCoordinateY": 2,
-    "Inventory": null
+    "Inventory": [
+      {
+        "Pokemon": [
+          {
+            "Name": "Quilava",
+            "Elements": [
+              "fire"
+            ],
+            "EV": 0,
+            "Stats": {
+              "HP": 45,
+              "Attack": 64,
+              "Defense": 58,
+              "Speed": 80,
+              "Sp_Attack": 80,
+              "Sp_Defense": 65
+            },
+            "Profile": {
+              "Height": 0.9,
+              "Weight": 19,
+              "CatchRate": 0,
+              "GenderRatio": {
+                "MaleRatio": 87.5,
+                "FemaleRatio": 12.5
+              },
+              "EggGroup": "Field",
+              "HatchSteps": 5100,
+              "Abilities": "Flash-fire, Blaze"
+            },
+            "DamegeWhenAttacked": [
+              {
+                "Element": "ground",
+                "Coefficient": 2
+              },
+              {
+                "Element": "steel",
+                "Coefficient": 0.5
+              },
+              {
+                "Element": "rock",
+                "Coefficient": 2
+              },
+              {
+                "Element": "fire",
+                "Coefficient": 0.5
+              },
+              {
+                "Element": "water",
+                "Coefficient": 2
+              },
+              {
+                "Element": "ice",
+                "Coefficient": 0.5
+              },
+              {
+                "Element": "",
+                "Coefficient": 0
+              },
+              {
+                "Element": "fairy",
+                "Coefficient": 0.5
+              }
+            ],
+            "EvolutionLevel": 36,
+            "NextEvolution": "Typhlosion",
+            "Moves": []
+          }
+        ],
+        "Level": 1,
+        "ID": 1
+      }
+    ]
   },
   {
     "Name": "Tin",
-    "ID": "12700155501",
-    "PlayerCoordinateX": 4,
+    "ID": "12700164796",
+    "PlayerCoordinateX": 7,
     "PlayerCoordinateY": 3,
-    "Inventory": null
+    "Inventory": [
+      {
+        "Pokemon": [
+          {
+            "Name": "Quilava",
+            "Elements": [
+              "fire"
+            ],
+            "EV": 0,
+            "Stats": {
+              "HP": 45,
+              "Attack": 64,
+              "Defense": 58,
+              "Speed": 80,
+              "Sp_Attack": 80,
+              "Sp_Defense": 65
+            },
+            "Profile": {
+              "Height": 0.9,
+              "Weight": 19,
+              "CatchRate": 0,
+              "GenderRatio": {
+                "MaleRatio": 87.5,
+                "FemaleRatio": 12.5
+              },
+              "EggGroup": "Field",
+              "HatchSteps": 5100,
+              "Abilities": "Flash-fire, Blaze"
+            },
+            "DamegeWhenAttacked": [
+              {
+                "Element": "ground",
+                "Coefficient": 2
+              },
+              {
+                "Element": "steel",
+                "Coefficient": 0.5
+              },
+              {
+                "Element": "rock",
+                "Coefficient": 2
+              },
+              {
+                "Element": "fire",
+                "Coefficient": 0.5
+              },
+              {
+                "Element": "water",
+                "Coefficient": 2
+              },
+              {
+                "Element": "ice",
+                "Coefficient": 0.5
+              },
+              {
+                "Element": "",
+                "Coefficient": 0
+              },
+              {
+                "Element": "fairy",
+                "Coefficient": 0.5
+              }
+            ],
+            "EvolutionLevel": 36,
+            "NextEvolution": "Typhlosion",
+            "Moves": []
+          }
+        ],
+        "Level": 1,
+        "ID": 1
+      }
+    ]
   },
   {
     "Name": "Tin",
-    "ID": "12700155501",
-    "PlayerCoordinateX": 4,
+    "ID": "12700164796",
+    "PlayerCoordinateX": 7,
     "PlayerCoordinateY": 4,
     "Inventory": [
       {
         "Pokemon": [
           {
-            "Name": "Larvitar",
+            "Name": "Quilava",
             "Elements": [
-              "rock",
-              "ground"
+              "fire"
             ],
             "EV": 0,
             "Stats": {
-              "HP": 50,
+              "HP": 45,
               "Attack": 64,
-              "Defense": 50,
-              "Speed": 41,
-              "Sp_Attack": 45,
-              "Sp_Defense": 50
+              "Defense": 58,
+              "Speed": 80,
+              "Sp_Attack": 80,
+              "Sp_Defense": 65
             },
             "Profile": {
-              "Height": 0.6,
-              "Weight": 72,
+              "Height": 0.9,
+              "Weight": 19,
               "CatchRate": 0,
               "GenderRatio": {
-                "MaleRatio": 50,
-                "FemaleRatio": 50
+                "MaleRatio": 87.5,
+                "FemaleRatio": 12.5
               },
-              "EggGroup": "Monster",
-              "HatchSteps": 10200,
-              "Abilities": "Sand-veil, Guts"
+              "EggGroup": "Field",
+              "HatchSteps": 5100,
+              "Abilities": "Flash-fire, Blaze"
             },
             "DamegeWhenAttacked": [
               {
-                "Element": "water",
-                "Coefficient": 4
-              },
-              {
-                "Element": "rock",
-                "Coefficient": 0.5
-              },
-              {
-                "Element": "grass",
-                "Coefficient": 4
-              },
-              {
-                "Element": "normal",
-                "Coefficient": 0.5
-              },
-              {
-                "Element": "ice",
+                "Element": "ground",
                 "Coefficient": 2
               },
               {
-                "Element": "flying",
+                "Element": "steel",
                 "Coefficient": 0.5
               },
               {
-                "Element": "fighting",
+                "Element": "rock",
                 "Coefficient": 2
               },
               {
@@ -1065,71 +377,284 @@
                 "Coefficient": 0.5
               },
               {
-                "Element": "steel",
+                "Element": "water",
                 "Coefficient": 2
               },
               {
-                "Element": "poison",
-                "Coefficient": 0.25
+                "Element": "ice",
+                "Coefficient": 0.5
               },
               {
                 "Element": "",
                 "Coefficient": 0
               },
               {
-                "Element": "electric",
-                "Coefficient": 0
+                "Element": "fairy",
+                "Coefficient": 0.5
               }
             ],
-            "EvolutionLevel": 30,
-            "NextEvolution": "Pupitar",
+            "EvolutionLevel": 36,
+            "NextEvolution": "Typhlosion",
             "Moves": []
           }
         ],
-        "Level": 0
+        "Level": 1,
+        "ID": 1
       }
     ]
   },
   {
     "Name": "Tin",
-    "ID": "12700155501",
-    "PlayerCoordinateX": 4,
+    "ID": "12700164796",
+    "PlayerCoordinateX": 7,
     "PlayerCoordinateY": 5,
-    "Inventory": null
+    "Inventory": [
+      {
+        "Pokemon": [
+          {
+            "Name": "Quilava",
+            "Elements": [
+              "fire"
+            ],
+            "EV": 0,
+            "Stats": {
+              "HP": 45,
+              "Attack": 64,
+              "Defense": 58,
+              "Speed": 80,
+              "Sp_Attack": 80,
+              "Sp_Defense": 65
+            },
+            "Profile": {
+              "Height": 0.9,
+              "Weight": 19,
+              "CatchRate": 0,
+              "GenderRatio": {
+                "MaleRatio": 87.5,
+                "FemaleRatio": 12.5
+              },
+              "EggGroup": "Field",
+              "HatchSteps": 5100,
+              "Abilities": "Flash-fire, Blaze"
+            },
+            "DamegeWhenAttacked": [
+              {
+                "Element": "ground",
+                "Coefficient": 2
+              },
+              {
+                "Element": "steel",
+                "Coefficient": 0.5
+              },
+              {
+                "Element": "rock",
+                "Coefficient": 2
+              },
+              {
+                "Element": "fire",
+                "Coefficient": 0.5
+              },
+              {
+                "Element": "water",
+                "Coefficient": 2
+              },
+              {
+                "Element": "ice",
+                "Coefficient": 0.5
+              },
+              {
+                "Element": "",
+                "Coefficient": 0
+              },
+              {
+                "Element": "fairy",
+                "Coefficient": 0.5
+              }
+            ],
+            "EvolutionLevel": 36,
+            "NextEvolution": "Typhlosion",
+            "Moves": []
+          }
+        ],
+        "Level": 1,
+        "ID": 1
+      }
+    ]
   },
   {
     "Name": "Tin",
-    "ID": "12700155501",
-    "PlayerCoordinateX": 4,
+    "ID": "12700164796",
+    "PlayerCoordinateX": 7,
     "PlayerCoordinateY": 6,
-    "Inventory": null
+    "Inventory": [
+      {
+        "Pokemon": [
+          {
+            "Name": "Quilava",
+            "Elements": [
+              "fire"
+            ],
+            "EV": 0,
+            "Stats": {
+              "HP": 45,
+              "Attack": 64,
+              "Defense": 58,
+              "Speed": 80,
+              "Sp_Attack": 80,
+              "Sp_Defense": 65
+            },
+            "Profile": {
+              "Height": 0.9,
+              "Weight": 19,
+              "CatchRate": 0,
+              "GenderRatio": {
+                "MaleRatio": 87.5,
+                "FemaleRatio": 12.5
+              },
+              "EggGroup": "Field",
+              "HatchSteps": 5100,
+              "Abilities": "Flash-fire, Blaze"
+            },
+            "DamegeWhenAttacked": [
+              {
+                "Element": "ground",
+                "Coefficient": 2
+              },
+              {
+                "Element": "steel",
+                "Coefficient": 0.5
+              },
+              {
+                "Element": "rock",
+                "Coefficient": 2
+              },
+              {
+                "Element": "fire",
+                "Coefficient": 0.5
+              },
+              {
+                "Element": "water",
+                "Coefficient": 2
+              },
+              {
+                "Element": "ice",
+                "Coefficient": 0.5
+              },
+              {
+                "Element": "",
+                "Coefficient": 0
+              },
+              {
+                "Element": "fairy",
+                "Coefficient": 0.5
+              }
+            ],
+            "EvolutionLevel": 36,
+            "NextEvolution": "Typhlosion",
+            "Moves": []
+          }
+        ],
+        "Level": 1,
+        "ID": 1
+      }
+    ]
   },
   {
     "Name": "Tin",
-    "ID": "12700155501",
-    "PlayerCoordinateX": 4,
+    "ID": "12700164796",
+    "PlayerCoordinateX": 7,
     "PlayerCoordinateY": 7,
     "Inventory": [
       {
         "Pokemon": [
           {
-            "Name": "Sealeo",
+            "Name": "Quilava",
+            "Elements": [
+              "fire"
+            ],
+            "EV": 0,
+            "Stats": {
+              "HP": 45,
+              "Attack": 64,
+              "Defense": 58,
+              "Speed": 80,
+              "Sp_Attack": 80,
+              "Sp_Defense": 65
+            },
+            "Profile": {
+              "Height": 0.9,
+              "Weight": 19,
+              "CatchRate": 0,
+              "GenderRatio": {
+                "MaleRatio": 87.5,
+                "FemaleRatio": 12.5
+              },
+              "EggGroup": "Field",
+              "HatchSteps": 5100,
+              "Abilities": "Flash-fire, Blaze"
+            },
+            "DamegeWhenAttacked": [
+              {
+                "Element": "ground",
+                "Coefficient": 2
+              },
+              {
+                "Element": "steel",
+                "Coefficient": 0.5
+              },
+              {
+                "Element": "rock",
+                "Coefficient": 2
+              },
+              {
+                "Element": "fire",
+                "Coefficient": 0.5
+              },
+              {
+                "Element": "water",
+                "Coefficient": 2
+              },
+              {
+                "Element": "ice",
+                "Coefficient": 0.5
+              },
+              {
+                "Element": "",
+                "Coefficient": 0
+              },
+              {
+                "Element": "fairy",
+                "Coefficient": 0.5
+              }
+            ],
+            "EvolutionLevel": 36,
+            "NextEvolution": "Typhlosion",
+            "Moves": []
+          }
+        ],
+        "Level": 1,
+        "ID": 1
+      },
+      {
+        "Pokemon": [
+          {
+            "Name": "Walrein",
             "Elements": [
               "ice",
               "water"
             ],
             "EV": 0,
             "Stats": {
-              "HP": 90,
-              "Attack": 60,
-              "Defense": 70,
-              "Speed": 45,
-              "Sp_Attack": 75,
-              "Sp_Defense": 70
+              "HP": 45,
+              "Attack": 80,
+              "Defense": 90,
+              "Speed": 65,
+              "Sp_Attack": 95,
+              "Sp_Defense": 90
             },
             "Profile": {
-              "Height": 1.1,
-              "Weight": 87.6,
+              "Height": 1.4,
+              "Weight": 150.6,
               "CatchRate": 0,
               "GenderRatio": {
                 "MaleRatio": 50,
@@ -1173,685 +698,70 @@
                 "Coefficient": 0
               }
             ],
-            "EvolutionLevel": 44,
-            "NextEvolution": "Walrein",
-            "Moves": []
-          }
-        ],
-        "Level": 0
-      }
-    ]
-  },
-  {
-    "Name": "Tin",
-    "ID": "12700160129",
-    "PlayerCoordinateX": 0,
-    "PlayerCoordinateY": 9,
-    "Inventory": null
-  },
-  {
-    "Name": "Tin",
-    "ID": "12700160129",
-    "PlayerCoordinateX": 1,
-    "PlayerCoordinateY": 9,
-    "Inventory": null
-  },
-  {
-    "Name": "Tin",
-    "ID": "12700160129",
-    "PlayerCoordinateX": 1,
-    "PlayerCoordinateY": 10,
-    "Inventory": [
-      {
-        "Pokemon": [],
-        "Level": 0
-      },
-      {
-        "Pokemon": [
-          {
-            "Name": "Jolteon",
-            "Elements": [
-              "electric"
-            ],
-            "EV": 0,
-            "Stats": {
-              "HP": 65,
-              "Attack": 65,
-              "Defense": 60,
-              "Speed": 130,
-              "Sp_Attack": 110,
-              "Sp_Defense": 95
-            },
-            "Profile": {
-              "Height": 0.8,
-              "Weight": 24.5,
-              "CatchRate": 0,
-              "GenderRatio": {
-                "MaleRatio": 87.5,
-                "FemaleRatio": 12.5
-              },
-              "EggGroup": "Field",
-              "HatchSteps": 8925,
-              "Abilities": "Volt-absorb, Quick-feet"
-            },
-            "DamegeWhenAttacked": [
-              {
-                "Element": "ground",
-                "Coefficient": 2
-              },
-              {
-                "Element": "flying",
-                "Coefficient": 0.5
-              },
-              {
-                "Element": "",
-                "Coefficient": 0
-              },
-              {
-                "Element": "steel",
-                "Coefficient": 0.5
-              },
-              {
-                "Element": "",
-                "Coefficient": 0
-              },
-              {
-                "Element": "electric",
-                "Coefficient": 0.5
-              }
-            ],
             "EvolutionLevel": 0,
             "NextEvolution": "",
             "Moves": []
           }
         ],
-        "Level": 0
+        "Level": 1,
+        "ID": 2
       }
     ]
   },
   {
     "Name": "Tin",
-    "ID": "12700160129",
-    "PlayerCoordinateX": 2,
-    "PlayerCoordinateY": 10,
+    "ID": "12700164796",
+    "PlayerCoordinateX": 8,
+    "PlayerCoordinateY": 7,
     "Inventory": [
       {
-        "Pokemon": [],
-        "Level": 0
-      },
-      {
         "Pokemon": [
           {
-            "Name": "Jolteon",
+            "Name": "Quilava",
             "Elements": [
-              "electric"
-            ],
-            "EV": 0,
-            "Stats": {
-              "HP": 65,
-              "Attack": 65,
-              "Defense": 60,
-              "Speed": 130,
-              "Sp_Attack": 110,
-              "Sp_Defense": 95
-            },
-            "Profile": {
-              "Height": 0.8,
-              "Weight": 24.5,
-              "CatchRate": 0,
-              "GenderRatio": {
-                "MaleRatio": 87.5,
-                "FemaleRatio": 12.5
-              },
-              "EggGroup": "Field",
-              "HatchSteps": 8925,
-              "Abilities": "Volt-absorb, Quick-feet"
-            },
-            "DamegeWhenAttacked": [
-              {
-                "Element": "ground",
-                "Coefficient": 2
-              },
-              {
-                "Element": "flying",
-                "Coefficient": 0.5
-              },
-              {
-                "Element": "",
-                "Coefficient": 0
-              },
-              {
-                "Element": "steel",
-                "Coefficient": 0.5
-              },
-              {
-                "Element": "",
-                "Coefficient": 0
-              },
-              {
-                "Element": "electric",
-                "Coefficient": 0.5
-              }
-            ],
-            "EvolutionLevel": 0,
-            "NextEvolution": "",
-            "Moves": []
-          }
-        ],
-        "Level": 0
-      },
-      {
-        "Pokemon": [],
-        "Level": 0
-      }
-    ]
-  },
-  {
-    "Name": "Tin",
-    "ID": "12700160129",
-    "PlayerCoordinateX": 2,
-    "PlayerCoordinateY": 11,
-    "Inventory": [
-      {
-        "Pokemon": [],
-        "Level": 0
-      },
-      {
-        "Pokemon": [
-          {
-            "Name": "Jolteon",
-            "Elements": [
-              "electric"
-            ],
-            "EV": 0,
-            "Stats": {
-              "HP": 65,
-              "Attack": 65,
-              "Defense": 60,
-              "Speed": 130,
-              "Sp_Attack": 110,
-              "Sp_Defense": 95
-            },
-            "Profile": {
-              "Height": 0.8,
-              "Weight": 24.5,
-              "CatchRate": 0,
-              "GenderRatio": {
-                "MaleRatio": 87.5,
-                "FemaleRatio": 12.5
-              },
-              "EggGroup": "Field",
-              "HatchSteps": 8925,
-              "Abilities": "Volt-absorb, Quick-feet"
-            },
-            "DamegeWhenAttacked": [
-              {
-                "Element": "ground",
-                "Coefficient": 2
-              },
-              {
-                "Element": "flying",
-                "Coefficient": 0.5
-              },
-              {
-                "Element": "",
-                "Coefficient": 0
-              },
-              {
-                "Element": "steel",
-                "Coefficient": 0.5
-              },
-              {
-                "Element": "",
-                "Coefficient": 0
-              },
-              {
-                "Element": "electric",
-                "Coefficient": 0.5
-              }
-            ],
-            "EvolutionLevel": 0,
-            "NextEvolution": "",
-            "Moves": []
-          }
-        ],
-        "Level": 0
-      },
-      {
-        "Pokemon": [],
-        "Level": 0
-      },
-      {
-        "Pokemon": [],
-        "Level": 0
-      }
-    ]
-  },
-  {
-    "Name": "Tin",
-    "ID": "12700160129",
-    "PlayerCoordinateX": 2,
-    "PlayerCoordinateY": 12,
-    "Inventory": [
-      {
-        "Pokemon": [],
-        "Level": 0
-      },
-      {
-        "Pokemon": [
-          {
-            "Name": "Jolteon",
-            "Elements": [
-              "electric"
-            ],
-            "EV": 0,
-            "Stats": {
-              "HP": 65,
-              "Attack": 65,
-              "Defense": 60,
-              "Speed": 130,
-              "Sp_Attack": 110,
-              "Sp_Defense": 95
-            },
-            "Profile": {
-              "Height": 0.8,
-              "Weight": 24.5,
-              "CatchRate": 0,
-              "GenderRatio": {
-                "MaleRatio": 87.5,
-                "FemaleRatio": 12.5
-              },
-              "EggGroup": "Field",
-              "HatchSteps": 8925,
-              "Abilities": "Volt-absorb, Quick-feet"
-            },
-            "DamegeWhenAttacked": [
-              {
-                "Element": "ground",
-                "Coefficient": 2
-              },
-              {
-                "Element": "flying",
-                "Coefficient": 0.5
-              },
-              {
-                "Element": "",
-                "Coefficient": 0
-              },
-              {
-                "Element": "steel",
-                "Coefficient": 0.5
-              },
-              {
-                "Element": "",
-                "Coefficient": 0
-              },
-              {
-                "Element": "electric",
-                "Coefficient": 0.5
-              }
-            ],
-            "EvolutionLevel": 0,
-            "NextEvolution": "",
-            "Moves": []
-          }
-        ],
-        "Level": 0
-      },
-      {
-        "Pokemon": [],
-        "Level": 0
-      },
-      {
-        "Pokemon": [],
-        "Level": 0
-      },
-      {
-        "Pokemon": [],
-        "Level": 0
-      }
-    ]
-  },
-  {
-    "Name": "Tin",
-    "ID": "12700160129",
-    "PlayerCoordinateX": 2,
-    "PlayerCoordinateY": 13,
-    "Inventory": [
-      {
-        "Pokemon": [],
-        "Level": 0
-      },
-      {
-        "Pokemon": [
-          {
-            "Name": "Jolteon",
-            "Elements": [
-              "electric"
-            ],
-            "EV": 0,
-            "Stats": {
-              "HP": 65,
-              "Attack": 65,
-              "Defense": 60,
-              "Speed": 130,
-              "Sp_Attack": 110,
-              "Sp_Defense": 95
-            },
-            "Profile": {
-              "Height": 0.8,
-              "Weight": 24.5,
-              "CatchRate": 0,
-              "GenderRatio": {
-                "MaleRatio": 87.5,
-                "FemaleRatio": 12.5
-              },
-              "EggGroup": "Field",
-              "HatchSteps": 8925,
-              "Abilities": "Volt-absorb, Quick-feet"
-            },
-            "DamegeWhenAttacked": [
-              {
-                "Element": "ground",
-                "Coefficient": 2
-              },
-              {
-                "Element": "flying",
-                "Coefficient": 0.5
-              },
-              {
-                "Element": "",
-                "Coefficient": 0
-              },
-              {
-                "Element": "steel",
-                "Coefficient": 0.5
-              },
-              {
-                "Element": "",
-                "Coefficient": 0
-              },
-              {
-                "Element": "electric",
-                "Coefficient": 0.5
-              }
-            ],
-            "EvolutionLevel": 0,
-            "NextEvolution": "",
-            "Moves": []
-          }
-        ],
-        "Level": 0
-      },
-      {
-        "Pokemon": [],
-        "Level": 0
-      },
-      {
-        "Pokemon": [],
-        "Level": 0
-      },
-      {
-        "Pokemon": [],
-        "Level": 0
-      },
-      {
-        "Pokemon": [],
-        "Level": 0
-      }
-    ]
-  },
-  {
-    "Name": "Tin",
-    "ID": "12700160129",
-    "PlayerCoordinateX": 2,
-    "PlayerCoordinateY": 14,
-    "Inventory": [
-      {
-        "Pokemon": [],
-        "Level": 0
-      },
-      {
-        "Pokemon": [
-          {
-            "Name": "Jolteon",
-            "Elements": [
-              "electric"
-            ],
-            "EV": 0,
-            "Stats": {
-              "HP": 65,
-              "Attack": 65,
-              "Defense": 60,
-              "Speed": 130,
-              "Sp_Attack": 110,
-              "Sp_Defense": 95
-            },
-            "Profile": {
-              "Height": 0.8,
-              "Weight": 24.5,
-              "CatchRate": 0,
-              "GenderRatio": {
-                "MaleRatio": 87.5,
-                "FemaleRatio": 12.5
-              },
-              "EggGroup": "Field",
-              "HatchSteps": 8925,
-              "Abilities": "Volt-absorb, Quick-feet"
-            },
-            "DamegeWhenAttacked": [
-              {
-                "Element": "ground",
-                "Coefficient": 2
-              },
-              {
-                "Element": "flying",
-                "Coefficient": 0.5
-              },
-              {
-                "Element": "",
-                "Coefficient": 0
-              },
-              {
-                "Element": "steel",
-                "Coefficient": 0.5
-              },
-              {
-                "Element": "",
-                "Coefficient": 0
-              },
-              {
-                "Element": "electric",
-                "Coefficient": 0.5
-              }
-            ],
-            "EvolutionLevel": 0,
-            "NextEvolution": "",
-            "Moves": []
-          }
-        ],
-        "Level": 0
-      },
-      {
-        "Pokemon": [],
-        "Level": 0
-      },
-      {
-        "Pokemon": [],
-        "Level": 0
-      },
-      {
-        "Pokemon": [],
-        "Level": 0
-      },
-      {
-        "Pokemon": [],
-        "Level": 0
-      },
-      {
-        "Pokemon": [],
-        "Level": 0
-      },
-      {
-        "Pokemon": [
-          {
-            "Name": "Blitzle",
-            "Elements": [
-              "electric"
+              "fire"
             ],
             "EV": 0,
             "Stats": {
               "HP": 45,
-              "Attack": 60,
-              "Defense": 32,
-              "Speed": 76,
-              "Sp_Attack": 50,
-              "Sp_Defense": 32
+              "Attack": 64,
+              "Defense": 58,
+              "Speed": 80,
+              "Sp_Attack": 80,
+              "Sp_Defense": 65
             },
             "Profile": {
-              "Height": 0.8,
-              "Weight": 29.8,
+              "Height": 0.9,
+              "Weight": 19,
               "CatchRate": 0,
               "GenderRatio": {
-                "MaleRatio": 50,
-                "FemaleRatio": 50
+                "MaleRatio": 87.5,
+                "FemaleRatio": 12.5
               },
               "EggGroup": "Field",
               "HatchSteps": 5100,
-              "Abilities": "Lightningrod, Motor-drive, Sap-sipper"
+              "Abilities": "Flash-fire, Blaze"
             },
             "DamegeWhenAttacked": [
               {
                 "Element": "ground",
                 "Coefficient": 2
-              },
-              {
-                "Element": "flying",
-                "Coefficient": 0.5
-              },
-              {
-                "Element": "",
-                "Coefficient": 0
               },
               {
                 "Element": "steel",
                 "Coefficient": 0.5
-              },
-              {
-                "Element": "",
-                "Coefficient": 0
-              },
-              {
-                "Element": "electric",
-                "Coefficient": 0.5
-              }
-            ],
-            "EvolutionLevel": 27,
-            "NextEvolution": "Zebstrika",
-            "Moves": []
-          }
-        ],
-        "Level": 0
-      }
-    ]
-  },
-  {
-    "Name": "Tin",
-    "ID": "12700153864",
-    "PlayerCoordinateX": 6,
-    "PlayerCoordinateY": 2,
-    "Inventory": null
-  },
-  {
-    "Name": "Tin",
-    "ID": "12700153864",
-    "PlayerCoordinateX": 7,
-    "PlayerCoordinateY": 2,
-    "Inventory": null
-  },
-  {
-    "Name": "Tin",
-    "ID": "12700153864",
-    "PlayerCoordinateX": 7,
-    "PlayerCoordinateY": 1,
-    "Inventory": [
-      {
-        "Pokemon": [],
-        "Level": 0
-      },
-      {
-        "Pokemon": [
-          {
-            "Name": "Beldum",
-            "Elements": [
-              "psychic",
-              "steel"
-            ],
-            "EV": 0,
-            "Stats": {
-              "HP": 40,
-              "Attack": 55,
-              "Defense": 80,
-              "Speed": 30,
-              "Sp_Attack": 35,
-              "Sp_Defense": 60
-            },
-            "Profile": {
-              "Height": 0.6,
-              "Weight": 95.2,
-              "CatchRate": 0,
-              "GenderRatio": {
-                "MaleRatio": 0,
-                "FemaleRatio": 0
-              },
-              "EggGroup": "Mineral",
-              "HatchSteps": 10200,
-              "Abilities": "Clear-body, Light-metal"
-            },
-            "DamegeWhenAttacked": [
-              {
-                "Element": "ground",
-                "Coefficient": 2
-              },
-              {
-                "Element": "normal",
-                "Coefficient": 0.5
-              },
-              {
-                "Element": "fire",
-                "Coefficient": 2
-              },
-              {
-                "Element": "flying",
-                "Coefficient": 0.5
-              },
-              {
-                "Element": "ghost",
-                "Coefficient": 2
               },
               {
                 "Element": "rock",
+                "Coefficient": 2
+              },
+              {
+                "Element": "fire",
                 "Coefficient": 0.5
               },
               {
-                "Element": "",
-                "Coefficient": 0
-              },
-              {
-                "Element": "steel",
-                "Coefficient": 0.5
-              },
-              {
-                "Element": "",
-                "Coefficient": 0
-              },
-              {
-                "Element": "grass",
-                "Coefficient": 0.5
-              },
-              {
-                "Element": "",
-                "Coefficient": 0
+                "Element": "water",
+                "Coefficient": 2
               },
               {
                 "Element": "ice",
@@ -1864,1032 +774,76 @@
               {
                 "Element": "fairy",
                 "Coefficient": 0.5
-              },
-              {
-                "Element": "",
-                "Coefficient": 0
-              },
-              {
-                "Element": "psychic",
-                "Coefficient": 0.25
-              },
-              {
-                "Element": "",
-                "Coefficient": 0
-              },
-              {
-                "Element": "poison",
-                "Coefficient": 0
               }
             ],
-            "EvolutionLevel": 20,
-            "NextEvolution": "Metang",
+            "EvolutionLevel": 36,
+            "NextEvolution": "Typhlosion",
             "Moves": []
           }
         ],
-        "Level": 0
-      }
-    ]
-  },
-  {
-    "Name": "Tin",
-    "ID": "12700153864",
-    "PlayerCoordinateX": 8,
-    "PlayerCoordinateY": 1,
-    "Inventory": [
-      {
-        "Pokemon": [],
-        "Level": 0
+        "Level": 1,
+        "ID": 1
       },
       {
         "Pokemon": [
           {
-            "Name": "Beldum",
+            "Name": "Walrein",
             "Elements": [
-              "psychic",
-              "steel"
+              "ice",
+              "water"
             ],
             "EV": 0,
             "Stats": {
-              "HP": 40,
-              "Attack": 55,
-              "Defense": 80,
-              "Speed": 30,
-              "Sp_Attack": 35,
-              "Sp_Defense": 60
+              "HP": 45,
+              "Attack": 80,
+              "Defense": 90,
+              "Speed": 65,
+              "Sp_Attack": 95,
+              "Sp_Defense": 90
             },
             "Profile": {
-              "Height": 0.6,
-              "Weight": 95.2,
-              "CatchRate": 0,
-              "GenderRatio": {
-                "MaleRatio": 0,
-                "FemaleRatio": 0
-              },
-              "EggGroup": "Mineral",
-              "HatchSteps": 10200,
-              "Abilities": "Clear-body, Light-metal"
-            },
-            "DamegeWhenAttacked": [
-              {
-                "Element": "ground",
-                "Coefficient": 2
-              },
-              {
-                "Element": "normal",
-                "Coefficient": 0.5
-              },
-              {
-                "Element": "fire",
-                "Coefficient": 2
-              },
-              {
-                "Element": "flying",
-                "Coefficient": 0.5
-              },
-              {
-                "Element": "ghost",
-                "Coefficient": 2
-              },
-              {
-                "Element": "rock",
-                "Coefficient": 0.5
-              },
-              {
-                "Element": "",
-                "Coefficient": 0
-              },
-              {
-                "Element": "steel",
-                "Coefficient": 0.5
-              },
-              {
-                "Element": "",
-                "Coefficient": 0
-              },
-              {
-                "Element": "grass",
-                "Coefficient": 0.5
-              },
-              {
-                "Element": "",
-                "Coefficient": 0
-              },
-              {
-                "Element": "ice",
-                "Coefficient": 0.5
-              },
-              {
-                "Element": "",
-                "Coefficient": 0
-              },
-              {
-                "Element": "fairy",
-                "Coefficient": 0.5
-              },
-              {
-                "Element": "",
-                "Coefficient": 0
-              },
-              {
-                "Element": "psychic",
-                "Coefficient": 0.25
-              },
-              {
-                "Element": "",
-                "Coefficient": 0
-              },
-              {
-                "Element": "poison",
-                "Coefficient": 0
-              }
-            ],
-            "EvolutionLevel": 20,
-            "NextEvolution": "Metang",
-            "Moves": []
-          }
-        ],
-        "Level": 0
-      },
-      {
-        "Pokemon": [],
-        "Level": 0
-      }
-    ]
-  },
-  {
-    "Name": "Tin",
-    "ID": "12700153864",
-    "PlayerCoordinateX": 9,
-    "PlayerCoordinateY": 1,
-    "Inventory": [
-      {
-        "Pokemon": [],
-        "Level": 0
-      },
-      {
-        "Pokemon": [
-          {
-            "Name": "Beldum",
-            "Elements": [
-              "psychic",
-              "steel"
-            ],
-            "EV": 0,
-            "Stats": {
-              "HP": 40,
-              "Attack": 55,
-              "Defense": 80,
-              "Speed": 30,
-              "Sp_Attack": 35,
-              "Sp_Defense": 60
-            },
-            "Profile": {
-              "Height": 0.6,
-              "Weight": 95.2,
-              "CatchRate": 0,
-              "GenderRatio": {
-                "MaleRatio": 0,
-                "FemaleRatio": 0
-              },
-              "EggGroup": "Mineral",
-              "HatchSteps": 10200,
-              "Abilities": "Clear-body, Light-metal"
-            },
-            "DamegeWhenAttacked": [
-              {
-                "Element": "ground",
-                "Coefficient": 2
-              },
-              {
-                "Element": "normal",
-                "Coefficient": 0.5
-              },
-              {
-                "Element": "fire",
-                "Coefficient": 2
-              },
-              {
-                "Element": "flying",
-                "Coefficient": 0.5
-              },
-              {
-                "Element": "ghost",
-                "Coefficient": 2
-              },
-              {
-                "Element": "rock",
-                "Coefficient": 0.5
-              },
-              {
-                "Element": "",
-                "Coefficient": 0
-              },
-              {
-                "Element": "steel",
-                "Coefficient": 0.5
-              },
-              {
-                "Element": "",
-                "Coefficient": 0
-              },
-              {
-                "Element": "grass",
-                "Coefficient": 0.5
-              },
-              {
-                "Element": "",
-                "Coefficient": 0
-              },
-              {
-                "Element": "ice",
-                "Coefficient": 0.5
-              },
-              {
-                "Element": "",
-                "Coefficient": 0
-              },
-              {
-                "Element": "fairy",
-                "Coefficient": 0.5
-              },
-              {
-                "Element": "",
-                "Coefficient": 0
-              },
-              {
-                "Element": "psychic",
-                "Coefficient": 0.25
-              },
-              {
-                "Element": "",
-                "Coefficient": 0
-              },
-              {
-                "Element": "poison",
-                "Coefficient": 0
-              }
-            ],
-            "EvolutionLevel": 20,
-            "NextEvolution": "Metang",
-            "Moves": []
-          }
-        ],
-        "Level": 0
-      },
-      {
-        "Pokemon": [],
-        "Level": 0
-      },
-      {
-        "Pokemon": [],
-        "Level": 0
-      }
-    ]
-  },
-  {
-    "Name": "Tin",
-    "ID": "12700153864",
-    "PlayerCoordinateX": 10,
-    "PlayerCoordinateY": 1,
-    "Inventory": [
-      {
-        "Pokemon": [],
-        "Level": 0
-      },
-      {
-        "Pokemon": [
-          {
-            "Name": "Beldum",
-            "Elements": [
-              "psychic",
-              "steel"
-            ],
-            "EV": 0,
-            "Stats": {
-              "HP": 40,
-              "Attack": 55,
-              "Defense": 80,
-              "Speed": 30,
-              "Sp_Attack": 35,
-              "Sp_Defense": 60
-            },
-            "Profile": {
-              "Height": 0.6,
-              "Weight": 95.2,
-              "CatchRate": 0,
-              "GenderRatio": {
-                "MaleRatio": 0,
-                "FemaleRatio": 0
-              },
-              "EggGroup": "Mineral",
-              "HatchSteps": 10200,
-              "Abilities": "Clear-body, Light-metal"
-            },
-            "DamegeWhenAttacked": [
-              {
-                "Element": "ground",
-                "Coefficient": 2
-              },
-              {
-                "Element": "normal",
-                "Coefficient": 0.5
-              },
-              {
-                "Element": "fire",
-                "Coefficient": 2
-              },
-              {
-                "Element": "flying",
-                "Coefficient": 0.5
-              },
-              {
-                "Element": "ghost",
-                "Coefficient": 2
-              },
-              {
-                "Element": "rock",
-                "Coefficient": 0.5
-              },
-              {
-                "Element": "",
-                "Coefficient": 0
-              },
-              {
-                "Element": "steel",
-                "Coefficient": 0.5
-              },
-              {
-                "Element": "",
-                "Coefficient": 0
-              },
-              {
-                "Element": "grass",
-                "Coefficient": 0.5
-              },
-              {
-                "Element": "",
-                "Coefficient": 0
-              },
-              {
-                "Element": "ice",
-                "Coefficient": 0.5
-              },
-              {
-                "Element": "",
-                "Coefficient": 0
-              },
-              {
-                "Element": "fairy",
-                "Coefficient": 0.5
-              },
-              {
-                "Element": "",
-                "Coefficient": 0
-              },
-              {
-                "Element": "psychic",
-                "Coefficient": 0.25
-              },
-              {
-                "Element": "",
-                "Coefficient": 0
-              },
-              {
-                "Element": "poison",
-                "Coefficient": 0
-              }
-            ],
-            "EvolutionLevel": 20,
-            "NextEvolution": "Metang",
-            "Moves": []
-          }
-        ],
-        "Level": 0
-      },
-      {
-        "Pokemon": [],
-        "Level": 0
-      },
-      {
-        "Pokemon": [],
-        "Level": 0
-      },
-      {
-        "Pokemon": [],
-        "Level": 0
-      }
-    ]
-  },
-  {
-    "Name": "Tin",
-    "ID": "12700153864",
-    "PlayerCoordinateX": 10,
-    "PlayerCoordinateY": 2,
-    "Inventory": [
-      {
-        "Pokemon": [],
-        "Level": 0
-      },
-      {
-        "Pokemon": [
-          {
-            "Name": "Beldum",
-            "Elements": [
-              "psychic",
-              "steel"
-            ],
-            "EV": 0,
-            "Stats": {
-              "HP": 40,
-              "Attack": 55,
-              "Defense": 80,
-              "Speed": 30,
-              "Sp_Attack": 35,
-              "Sp_Defense": 60
-            },
-            "Profile": {
-              "Height": 0.6,
-              "Weight": 95.2,
-              "CatchRate": 0,
-              "GenderRatio": {
-                "MaleRatio": 0,
-                "FemaleRatio": 0
-              },
-              "EggGroup": "Mineral",
-              "HatchSteps": 10200,
-              "Abilities": "Clear-body, Light-metal"
-            },
-            "DamegeWhenAttacked": [
-              {
-                "Element": "ground",
-                "Coefficient": 2
-              },
-              {
-                "Element": "normal",
-                "Coefficient": 0.5
-              },
-              {
-                "Element": "fire",
-                "Coefficient": 2
-              },
-              {
-                "Element": "flying",
-                "Coefficient": 0.5
-              },
-              {
-                "Element": "ghost",
-                "Coefficient": 2
-              },
-              {
-                "Element": "rock",
-                "Coefficient": 0.5
-              },
-              {
-                "Element": "",
-                "Coefficient": 0
-              },
-              {
-                "Element": "steel",
-                "Coefficient": 0.5
-              },
-              {
-                "Element": "",
-                "Coefficient": 0
-              },
-              {
-                "Element": "grass",
-                "Coefficient": 0.5
-              },
-              {
-                "Element": "",
-                "Coefficient": 0
-              },
-              {
-                "Element": "ice",
-                "Coefficient": 0.5
-              },
-              {
-                "Element": "",
-                "Coefficient": 0
-              },
-              {
-                "Element": "fairy",
-                "Coefficient": 0.5
-              },
-              {
-                "Element": "",
-                "Coefficient": 0
-              },
-              {
-                "Element": "psychic",
-                "Coefficient": 0.25
-              },
-              {
-                "Element": "",
-                "Coefficient": 0
-              },
-              {
-                "Element": "poison",
-                "Coefficient": 0
-              }
-            ],
-            "EvolutionLevel": 20,
-            "NextEvolution": "Metang",
-            "Moves": []
-          }
-        ],
-        "Level": 0
-      },
-      {
-        "Pokemon": [],
-        "Level": 0
-      },
-      {
-        "Pokemon": [],
-        "Level": 0
-      },
-      {
-        "Pokemon": [],
-        "Level": 0
-      },
-      {
-        "Pokemon": [],
-        "Level": 0
-      }
-    ]
-  },
-  {
-    "Name": "Tin",
-    "ID": "12700153864",
-    "PlayerCoordinateX": 10,
-    "PlayerCoordinateY": 3,
-    "Inventory": [
-      {
-        "Pokemon": [],
-        "Level": 0
-      },
-      {
-        "Pokemon": [
-          {
-            "Name": "Beldum",
-            "Elements": [
-              "psychic",
-              "steel"
-            ],
-            "EV": 0,
-            "Stats": {
-              "HP": 40,
-              "Attack": 55,
-              "Defense": 80,
-              "Speed": 30,
-              "Sp_Attack": 35,
-              "Sp_Defense": 60
-            },
-            "Profile": {
-              "Height": 0.6,
-              "Weight": 95.2,
-              "CatchRate": 0,
-              "GenderRatio": {
-                "MaleRatio": 0,
-                "FemaleRatio": 0
-              },
-              "EggGroup": "Mineral",
-              "HatchSteps": 10200,
-              "Abilities": "Clear-body, Light-metal"
-            },
-            "DamegeWhenAttacked": [
-              {
-                "Element": "ground",
-                "Coefficient": 2
-              },
-              {
-                "Element": "normal",
-                "Coefficient": 0.5
-              },
-              {
-                "Element": "fire",
-                "Coefficient": 2
-              },
-              {
-                "Element": "flying",
-                "Coefficient": 0.5
-              },
-              {
-                "Element": "ghost",
-                "Coefficient": 2
-              },
-              {
-                "Element": "rock",
-                "Coefficient": 0.5
-              },
-              {
-                "Element": "",
-                "Coefficient": 0
-              },
-              {
-                "Element": "steel",
-                "Coefficient": 0.5
-              },
-              {
-                "Element": "",
-                "Coefficient": 0
-              },
-              {
-                "Element": "grass",
-                "Coefficient": 0.5
-              },
-              {
-                "Element": "",
-                "Coefficient": 0
-              },
-              {
-                "Element": "ice",
-                "Coefficient": 0.5
-              },
-              {
-                "Element": "",
-                "Coefficient": 0
-              },
-              {
-                "Element": "fairy",
-                "Coefficient": 0.5
-              },
-              {
-                "Element": "",
-                "Coefficient": 0
-              },
-              {
-                "Element": "psychic",
-                "Coefficient": 0.25
-              },
-              {
-                "Element": "",
-                "Coefficient": 0
-              },
-              {
-                "Element": "poison",
-                "Coefficient": 0
-              }
-            ],
-            "EvolutionLevel": 20,
-            "NextEvolution": "Metang",
-            "Moves": []
-          }
-        ],
-        "Level": 0
-      },
-      {
-        "Pokemon": [],
-        "Level": 0
-      },
-      {
-        "Pokemon": [],
-        "Level": 0
-      },
-      {
-        "Pokemon": [],
-        "Level": 0
-      },
-      {
-        "Pokemon": [],
-        "Level": 0
-      },
-      {
-        "Pokemon": [],
-        "Level": 0
-      }
-    ]
-  },
-  {
-    "Name": "Tin",
-    "ID": "12700153864",
-    "PlayerCoordinateX": 10,
-    "PlayerCoordinateY": 4,
-    "Inventory": [
-      {
-        "Pokemon": [],
-        "Level": 0
-      },
-      {
-        "Pokemon": [
-          {
-            "Name": "Beldum",
-            "Elements": [
-              "psychic",
-              "steel"
-            ],
-            "EV": 0,
-            "Stats": {
-              "HP": 40,
-              "Attack": 55,
-              "Defense": 80,
-              "Speed": 30,
-              "Sp_Attack": 35,
-              "Sp_Defense": 60
-            },
-            "Profile": {
-              "Height": 0.6,
-              "Weight": 95.2,
-              "CatchRate": 0,
-              "GenderRatio": {
-                "MaleRatio": 0,
-                "FemaleRatio": 0
-              },
-              "EggGroup": "Mineral",
-              "HatchSteps": 10200,
-              "Abilities": "Clear-body, Light-metal"
-            },
-            "DamegeWhenAttacked": [
-              {
-                "Element": "ground",
-                "Coefficient": 2
-              },
-              {
-                "Element": "normal",
-                "Coefficient": 0.5
-              },
-              {
-                "Element": "fire",
-                "Coefficient": 2
-              },
-              {
-                "Element": "flying",
-                "Coefficient": 0.5
-              },
-              {
-                "Element": "ghost",
-                "Coefficient": 2
-              },
-              {
-                "Element": "rock",
-                "Coefficient": 0.5
-              },
-              {
-                "Element": "",
-                "Coefficient": 0
-              },
-              {
-                "Element": "steel",
-                "Coefficient": 0.5
-              },
-              {
-                "Element": "",
-                "Coefficient": 0
-              },
-              {
-                "Element": "grass",
-                "Coefficient": 0.5
-              },
-              {
-                "Element": "",
-                "Coefficient": 0
-              },
-              {
-                "Element": "ice",
-                "Coefficient": 0.5
-              },
-              {
-                "Element": "",
-                "Coefficient": 0
-              },
-              {
-                "Element": "fairy",
-                "Coefficient": 0.5
-              },
-              {
-                "Element": "",
-                "Coefficient": 0
-              },
-              {
-                "Element": "psychic",
-                "Coefficient": 0.25
-              },
-              {
-                "Element": "",
-                "Coefficient": 0
-              },
-              {
-                "Element": "poison",
-                "Coefficient": 0
-              }
-            ],
-            "EvolutionLevel": 20,
-            "NextEvolution": "Metang",
-            "Moves": []
-          }
-        ],
-        "Level": 0
-      },
-      {
-        "Pokemon": [],
-        "Level": 0
-      },
-      {
-        "Pokemon": [],
-        "Level": 0
-      },
-      {
-        "Pokemon": [],
-        "Level": 0
-      },
-      {
-        "Pokemon": [],
-        "Level": 0
-      },
-      {
-        "Pokemon": [],
-        "Level": 0
-      },
-      {
-        "Pokemon": [],
-        "Level": 0
-      }
-    ]
-  },
-  {
-    "Name": "Tin",
-    "ID": "12700153864",
-    "PlayerCoordinateX": 10,
-    "PlayerCoordinateY": 5,
-    "Inventory": [
-      {
-        "Pokemon": [],
-        "Level": 0
-      },
-      {
-        "Pokemon": [
-          {
-            "Name": "Beldum",
-            "Elements": [
-              "psychic",
-              "steel"
-            ],
-            "EV": 0,
-            "Stats": {
-              "HP": 40,
-              "Attack": 55,
-              "Defense": 80,
-              "Speed": 30,
-              "Sp_Attack": 35,
-              "Sp_Defense": 60
-            },
-            "Profile": {
-              "Height": 0.6,
-              "Weight": 95.2,
-              "CatchRate": 0,
-              "GenderRatio": {
-                "MaleRatio": 0,
-                "FemaleRatio": 0
-              },
-              "EggGroup": "Mineral",
-              "HatchSteps": 10200,
-              "Abilities": "Clear-body, Light-metal"
-            },
-            "DamegeWhenAttacked": [
-              {
-                "Element": "ground",
-                "Coefficient": 2
-              },
-              {
-                "Element": "normal",
-                "Coefficient": 0.5
-              },
-              {
-                "Element": "fire",
-                "Coefficient": 2
-              },
-              {
-                "Element": "flying",
-                "Coefficient": 0.5
-              },
-              {
-                "Element": "ghost",
-                "Coefficient": 2
-              },
-              {
-                "Element": "rock",
-                "Coefficient": 0.5
-              },
-              {
-                "Element": "",
-                "Coefficient": 0
-              },
-              {
-                "Element": "steel",
-                "Coefficient": 0.5
-              },
-              {
-                "Element": "",
-                "Coefficient": 0
-              },
-              {
-                "Element": "grass",
-                "Coefficient": 0.5
-              },
-              {
-                "Element": "",
-                "Coefficient": 0
-              },
-              {
-                "Element": "ice",
-                "Coefficient": 0.5
-              },
-              {
-                "Element": "",
-                "Coefficient": 0
-              },
-              {
-                "Element": "fairy",
-                "Coefficient": 0.5
-              },
-              {
-                "Element": "",
-                "Coefficient": 0
-              },
-              {
-                "Element": "psychic",
-                "Coefficient": 0.25
-              },
-              {
-                "Element": "",
-                "Coefficient": 0
-              },
-              {
-                "Element": "poison",
-                "Coefficient": 0
-              }
-            ],
-            "EvolutionLevel": 20,
-            "NextEvolution": "Metang",
-            "Moves": []
-          }
-        ],
-        "Level": 0
-      },
-      {
-        "Pokemon": [],
-        "Level": 0
-      },
-      {
-        "Pokemon": [],
-        "Level": 0
-      },
-      {
-        "Pokemon": [],
-        "Level": 0
-      },
-      {
-        "Pokemon": [],
-        "Level": 0
-      },
-      {
-        "Pokemon": [],
-        "Level": 0
-      },
-      {
-        "Pokemon": [],
-        "Level": 0
-      },
-      {
-        "Pokemon": [],
-        "Level": 0
-      },
-      {
-        "Pokemon": [
-          {
-            "Name": "Linoone",
-            "Elements": [
-              "normal"
-            ],
-            "EV": 0,
-            "Stats": {
-              "HP": 78,
-              "Attack": 70,
-              "Defense": 61,
-              "Speed": 100,
-              "Sp_Attack": 50,
-              "Sp_Defense": 61
-            },
-            "Profile": {
-              "Height": 0.5,
-              "Weight": 32.5,
+              "Height": 1.4,
+              "Weight": 150.6,
               "CatchRate": 0,
               "GenderRatio": {
                 "MaleRatio": 50,
                 "FemaleRatio": 50
               },
-              "EggGroup": "Field",
-              "HatchSteps": 3825,
-              "Abilities": "Pickup, Gluttony, Quick-feet"
+              "EggGroup": "Water 1, Field",
+              "HatchSteps": 5100,
+              "Abilities": "Oblivious, Thick-fat, Ice-body"
             },
             "DamegeWhenAttacked": [
+              {
+                "Element": "grass",
+                "Coefficient": 2
+              },
+              {
+                "Element": "water",
+                "Coefficient": 0.5
+              },
+              {
+                "Element": "electric",
+                "Coefficient": 2
+              },
+              {
+                "Element": "ice",
+                "Coefficient": 0.25
+              },
               {
                 "Element": "fighting",
                 "Coefficient": 2
               },
               {
-                "Element": "ghost",
+                "Element": "",
+                "Coefficient": 0
+              },
+              {
+                "Element": "rock",
+                "Coefficient": 2
+              },
+              {
+                "Element": "",
                 "Coefficient": 0
               }
             ],
@@ -2898,7 +852,306 @@
             "Moves": []
           }
         ],
-        "Level": 0
+        "Level": 1,
+        "ID": 2
+      }
+    ]
+  },
+  {
+    "Name": "Tin",
+    "ID": "12700164796",
+    "PlayerCoordinateX": 8,
+    "PlayerCoordinateY": 8,
+    "Inventory": [
+      {
+        "Pokemon": [
+          {
+            "Name": "Quilava",
+            "Elements": [
+              "fire"
+            ],
+            "EV": 0,
+            "Stats": {
+              "HP": 45,
+              "Attack": 64,
+              "Defense": 58,
+              "Speed": 80,
+              "Sp_Attack": 80,
+              "Sp_Defense": 65
+            },
+            "Profile": {
+              "Height": 0.9,
+              "Weight": 19,
+              "CatchRate": 0,
+              "GenderRatio": {
+                "MaleRatio": 87.5,
+                "FemaleRatio": 12.5
+              },
+              "EggGroup": "Field",
+              "HatchSteps": 5100,
+              "Abilities": "Flash-fire, Blaze"
+            },
+            "DamegeWhenAttacked": [
+              {
+                "Element": "ground",
+                "Coefficient": 2
+              },
+              {
+                "Element": "steel",
+                "Coefficient": 0.5
+              },
+              {
+                "Element": "rock",
+                "Coefficient": 2
+              },
+              {
+                "Element": "fire",
+                "Coefficient": 0.5
+              },
+              {
+                "Element": "water",
+                "Coefficient": 2
+              },
+              {
+                "Element": "ice",
+                "Coefficient": 0.5
+              },
+              {
+                "Element": "",
+                "Coefficient": 0
+              },
+              {
+                "Element": "fairy",
+                "Coefficient": 0.5
+              }
+            ],
+            "EvolutionLevel": 36,
+            "NextEvolution": "Typhlosion",
+            "Moves": []
+          }
+        ],
+        "Level": 1,
+        "ID": 1
+      },
+      {
+        "Pokemon": [
+          {
+            "Name": "Walrein",
+            "Elements": [
+              "ice",
+              "water"
+            ],
+            "EV": 0,
+            "Stats": {
+              "HP": 45,
+              "Attack": 80,
+              "Defense": 90,
+              "Speed": 65,
+              "Sp_Attack": 95,
+              "Sp_Defense": 90
+            },
+            "Profile": {
+              "Height": 1.4,
+              "Weight": 150.6,
+              "CatchRate": 0,
+              "GenderRatio": {
+                "MaleRatio": 50,
+                "FemaleRatio": 50
+              },
+              "EggGroup": "Water 1, Field",
+              "HatchSteps": 5100,
+              "Abilities": "Oblivious, Thick-fat, Ice-body"
+            },
+            "DamegeWhenAttacked": [
+              {
+                "Element": "grass",
+                "Coefficient": 2
+              },
+              {
+                "Element": "water",
+                "Coefficient": 0.5
+              },
+              {
+                "Element": "electric",
+                "Coefficient": 2
+              },
+              {
+                "Element": "ice",
+                "Coefficient": 0.25
+              },
+              {
+                "Element": "fighting",
+                "Coefficient": 2
+              },
+              {
+                "Element": "",
+                "Coefficient": 0
+              },
+              {
+                "Element": "rock",
+                "Coefficient": 2
+              },
+              {
+                "Element": "",
+                "Coefficient": 0
+              }
+            ],
+            "EvolutionLevel": 0,
+            "NextEvolution": "",
+            "Moves": []
+          }
+        ],
+        "Level": 1,
+        "ID": 2
+      },
+      {
+        "Pokemon": [
+          {
+            "Name": "Amoonguss",
+            "Elements": [
+              "grass",
+              "poison"
+            ],
+            "EV": 0,
+            "Stats": {
+              "HP": 114,
+              "Attack": 85,
+              "Defense": 70,
+              "Speed": 30,
+              "Sp_Attack": 85,
+              "Sp_Defense": 80
+            },
+            "Profile": {
+              "Height": 0.6,
+              "Weight": 10.5,
+              "CatchRate": 0,
+              "GenderRatio": {
+                "MaleRatio": 50,
+                "FemaleRatio": 50
+              },
+              "EggGroup": "Grass",
+              "HatchSteps": 5100,
+              "Abilities": "Effect-spore, Regenerator"
+            },
+            "DamegeWhenAttacked": [
+              {
+                "Element": "ground",
+                "Coefficient": 2
+              },
+              {
+                "Element": "fighting",
+                "Coefficient": 0.5
+              },
+              {
+                "Element": "psychic",
+                "Coefficient": 2
+              },
+              {
+                "Element": "fairy",
+                "Coefficient": 0.5
+              },
+              {
+                "Element": "flying",
+                "Coefficient": 2
+              },
+              {
+                "Element": "water",
+                "Coefficient": 0.5
+              },
+              {
+                "Element": "fire",
+                "Coefficient": 2
+              },
+              {
+                "Element": "electric",
+                "Coefficient": 0.5
+              },
+              {
+                "Element": "ice",
+                "Coefficient": 2
+              },
+              {
+                "Element": "grass",
+                "Coefficient": 0.25
+              }
+            ],
+            "EvolutionLevel": 0,
+            "NextEvolution": "",
+            "Moves": []
+          }
+        ],
+        "Level": 1,
+        "ID": 3
+      },
+      {
+        "Pokemon": [
+          {
+            "Name": "Tyrogue",
+            "Elements": [
+              "fighting"
+            ],
+            "EV": 0,
+            "Stats": {
+              "HP": 35,
+              "Attack": 35,
+              "Defense": 35,
+              "Speed": 35,
+              "Sp_Attack": 35,
+              "Sp_Defense": 35
+            },
+            "Profile": {
+              "Height": 0.7,
+              "Weight": 21,
+              "CatchRate": 0,
+              "GenderRatio": {
+                "MaleRatio": 100,
+                "FemaleRatio": 0
+              },
+              "EggGroup": "No Eggs",
+              "HatchSteps": 6375,
+              "Abilities": "Guts, Vital-spirit, Steadfast"
+            },
+            "DamegeWhenAttacked": [
+              {
+                "Element": "flying",
+                "Coefficient": 2
+              },
+              {
+                "Element": "rock",
+                "Coefficient": 0.5
+              },
+              {
+                "Element": "psychic",
+                "Coefficient": 2
+              },
+              {
+                "Element": "bug",
+                "Coefficient": 0.5
+              },
+              {
+                "Element": "fairy",
+                "Coefficient": 2
+              },
+              {
+                "Element": "grass",
+                "Coefficient": 0.5
+              },
+              {
+                "Element": "",
+                "Coefficient": 0
+              },
+              {
+                "Element": "dark",
+                "Coefficient": 0.5
+              }
+            ],
+            "EvolutionLevel": 20,
+            "NextEvolution": "Hitmonchan",
+            "Moves": []
+          }
+        ],
+        "Level": 1,
+        "ID": 4
       }
     ]
   }
