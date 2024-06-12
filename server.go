@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"math/big"
+	"math/rand" // Add this line to import the math/rand package
 	"net"
 	"os"
 	"strconv"
@@ -13,12 +14,12 @@ import (
 )
 
 type Stats struct {
-	HP         int `json:"HP"`
-	Attack     int `json:"Attack"`
-	Defense    int `json:"Defense"`
-	Speed      int `json:"Speed"`
-	Sp_Attack  int `json:"Sp_Attack"`
-	Sp_Defense int `json:"Sp_Defense"`
+	HP         float32 `json:"HP"`
+	Attack     float32 `json:"Attack"`
+	Defense    float32 `json:"Defense"`
+	Speed      int     `json:"Speed"`
+	Sp_Attack  float32 `json:"Sp_Attack"`
+	Sp_Defense float32 `json:"Sp_Defense"`
 }
 
 type GenderRatio struct {
@@ -60,6 +61,8 @@ type Pokemon struct {
 	EvolutionLevel     int                  `json:"EvolutionLevel"`
 	NextEvolution      string               `json:"NextEvolution"`
 	Moves              []Moves              `json:"Moves"`
+	Experience         int
+	Level              int
 }
 
 type Pokedex struct {
@@ -69,17 +72,13 @@ type Pokedex struct {
 }
 
 type Player struct {
-	Name              string      `json:"Name"`
-	ID                string      `json:"ID"`
-	PlayerCoordinateX int         `json:"PlayerCoordinateX"`
-	PlayerCoordinateY int         `json:"PlayerCoordinateY"`
-	Inventory         []Inventory `json:"Inventory"`
+	Name              string    `json:"Name"`
+	ID                string    `json:"ID"`
+	PlayerCoordinateX int       `json:"PlayerCoordinateX"`
+	PlayerCoordinateY int       `json:"PlayerCoordinateY"`
+	Inventory         []Pokemon `json:"Inventory"`
+	IsTurn            bool
 	sync.Mutex
-}
-type Inventory struct {
-	MyPokemon []Pokemon `json:"Pokemon"`
-	Level     int       `json:"Level"`
-	ID        int       `json:"ID"`
 }
 
 var players = make(map[string]*Player)
@@ -237,35 +236,55 @@ func PokeCat(Id string, playername string, x int, y int) string {
 	return ""
 }
 
-func PokeBat(idStr string, ID1 int, ID2 int, ID3 int) string {
+var numberofPlayers []Player
+var playernum int
+
+func startMiniUDPServer(port string, playernum int) string {
+	if playernum > 0 {
+		addr, err := net.ResolveUDPAddr("udp", ":"+port)
+		if err != nil {
+			error := fmt.Sprintln("Error resolving UDP address for mini server:", err)
+			return error
+		}
+
+		conn, err := net.ListenUDP("udp", addr)
+		if err != nil {
+			error := fmt.Sprintln("Error listening on UDP for mini server:", err)
+			return error
+		}
+		defer conn.Close()
+		fmt.Printf("Mini UDP server started on port %s\n", port)
+
+		buffer := make([]byte, 1024)
+		for {
+			n, remoteAddr, err := conn.ReadFromUDP(buffer)
+			if err != nil {
+				fmt.Println("Error reading from UDP in mini server:", err)
+				continue
+			}
+			message := string(buffer[:n])
+			parts := strings.Split(message, " ")
+			fmt.Printf("Mini server received: %s from %v\n", message, remoteAddr)
+
+			// Process the message here
+			// For example, echoing back the received message
+			if _, err := conn.WriteToUDP([]byte("Mini Echo: "+message), remoteAddr); err != nil {
+				fmt.Println("Error sending response from mini server:", err)
+			}
+		}
+	} else {
+		key := fmt.Sprintln("Not enough Player")
+		return key
+	}
+}
+
+func PokeBat(idStr string) {
 	player, exists := players[idStr]
 	if !exists {
 		fmt.Println("Player does not exist.")
 	}
-	// Check if the player has at least 3 Pokemon in their inventory.
-	if len(player.Inventory) < 3 {
-		fmt.Println("Player does not have enough Pokemon.")
-		return ""
-	}
-	// Check if the player has the specified Pokemon in their inventory.
-	if ID1 < 0 || ID1-1 >= len(player.Inventory) || ID2 < 0 || ID2-1 >= len(player.Inventory) || ID3 < 0 || ID3-1 >= len(player.Inventory) {
-		fmt.Println("Invalid Pokemon ID.")
-		return ""
-	}
-	// Get the specified Pokemon from the player's inventory.
-	pokemon1 := player.Inventory[ID1-1].MyPokemon[0]
-	pokemon2 := player.Inventory[ID2-1].MyPokemon[0]
-	pokemon3 := player.Inventory[ID3-1].MyPokemon[0]
-	// Check if the specified Pokemon are valid.
-	if pokemon1.Name == "" || pokemon2.Name == "" || pokemon3.Name == "" {
-		fmt.Println("Invalid Pokemon.")
-		return ""
-	}
-
-	// Simulate a Pokemon battle between the specified Pokemon.
-	fmt.Println("Pokemon battle:", pokemon1.Name, pokemon2.Name, pokemon3.Name)
-	return ""
-
+	playernum += 1
+	startMiniUDPServer("8081", playernum)
 }
 
 // Use the assigned variables pokemon1, pokemon2, and pokemon3 as needed.
@@ -374,15 +393,9 @@ func main() {
 				}
 			}
 		case "PokeBat":
-			ID1, _ := strconv.Atoi(parts[1])
-			ID2, _ := strconv.Atoi(parts[2])
-			ID3, _ := strconv.Atoi(parts[3])
-			PokeBat(idStr, ID1, ID2, ID3)
+			PokeBat(idStr)
 		case "Switch":
-			ID1, _ := strconv.Atoi(parts[1])
-			ID2, _ := strconv.Atoi(parts[2])
-			ID3, _ := strconv.Atoi(parts[3])
-			PokeBat(idStr, ID1, ID2, ID3)
+			PokeBat(idStr)
 
 		}
 
