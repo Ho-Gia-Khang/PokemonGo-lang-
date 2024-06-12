@@ -43,12 +43,11 @@ type DamegeWhenAttacked struct {
 }
 
 type Moves struct {
-	Name        string `json:"Name"`
-	Element     string `json:"Element"`
-	Power       string `json:"Power"`
-	Acc         int    `json:"Acc"`
-	PP          int    `json:"PP"`
-	Description string `json:"Description"`
+	Name    string   `json:"Name"`
+	Element []string `json:"Element"`
+	Power   float32  `json:"Power"`
+	Acc     int      `json:"Acc"`
+	PP      int      `json:"PP"`
 }
 
 type Pokemon struct {
@@ -61,10 +60,9 @@ type Pokemon struct {
 	EvolutionLevel     int                  `json:"EvolutionLevel"`
 	NextEvolution      string               `json:"NextEvolution"`
 	Moves              []Moves              `json:"Moves"`
-	Experience         int
-	Level              int
+	Experience         int                  `json:"Experience"`
+	Level              int                  `json:"Level"`
 }
-
 type Pokedex struct {
 	Pokemon     []Pokemon `json:"Pokemon"`
 	CoordinateX int
@@ -246,7 +244,6 @@ func startMiniUDPServer(port string, playernum int) string {
 			error := fmt.Sprintln("Error resolving UDP address for mini server:", err)
 			return error
 		}
-
 		conn, err := net.ListenUDP("udp", addr)
 		if err != nil {
 			error := fmt.Sprintln("Error listening on UDP for mini server:", err)
@@ -386,7 +383,7 @@ func main() {
 			}
 		case "Inventory":
 			for _, inv := range players[idStr].Inventory {
-				inventoryDetails := fmt.Sprintf("Player Inventory: Name: %s, Level: %d, ID: %d", inv.Name, inv.Level, inv.)
+				inventoryDetails := fmt.Sprintf("Player Inventory: Name: %s, Level: %d", inv.Name, inv.Level)
 				_, err := conn.WriteToUDP([]byte(inventoryDetails), addr)
 				if err != nil {
 					fmt.Println("Error sending connect message to client:", err)
