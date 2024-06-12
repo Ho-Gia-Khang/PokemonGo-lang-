@@ -33,7 +33,6 @@ func battleScene(player1 *Player, player2 *Player) {
 
 	// init the battle
 	reader := bufio.NewReader(os.Stdin)
-	fmt.Println("Battle Start!")
 
 	// player 1 select 3 pokemons
 	fmt.Println("Player 1 please select 3 pokemons from: ")
@@ -121,7 +120,7 @@ func battleScene(player1 *Player, player2 *Player) {
 			command := readCommands(reader)
 			switch command {
 				case "attack":
-					attack(player2Pokemon, player2Pokemon)
+					attack(player2Pokemon, player1Pokemon)
 				case "switch":
 					dislaySelectedPokemons(*player2Pokemons)
 					player2Pokemon = switchToChosenPokemon(*player2Pokemons, reader)
@@ -328,7 +327,7 @@ func selectPokemon(player *Player, reader *bufio.Reader) *[]Pokemon {
 		if len(selectedPokemons) == 3 {
 			break
 		}
-		fmt.Printf("Enter the index of the %d you want to select: ", counter)
+		fmt.Printf("Enter the index of the %d pokemon you want to select: ", counter)
 		index := readIndex(reader)
 		if index < 0 || index >= len(player.Inventory) {
 			fmt.Println("Invalid index")
