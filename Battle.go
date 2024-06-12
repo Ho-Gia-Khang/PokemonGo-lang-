@@ -53,12 +53,17 @@ func battleScene(player1 *Player, player2 *Player) {
 	var firstAttacker = getFirstAttacker(allBattlingPokemons)
 	var firstDefender *Pokemon
 
+	fmt.Println("Battle start!")
+	fmt.Println("Please enter a one-word command: attack or switch to control your pokemon.")
+	fmt.Println("Enter \"?\" to see the list of commands.")
 	if(isContain(*player1Pokemons, *firstAttacker)){
 		firstDefender = getFirstDefender(*player2Pokemons)
+		fmt.Println("Player 1 goes first")
 		player1.IsTurn = false
 		player2.IsTurn = true
 	} else {
 		firstDefender = getFirstDefender(*player1Pokemons)
+		fmt.Println("Player 2 goes first")
 		player1.IsTurn = true
 		player2.IsTurn = false
 	}
@@ -69,60 +74,60 @@ func battleScene(player1 *Player, player2 *Player) {
 
 	// the battle loop
 	for {
-		if isLost(player1Pokemons) {
-			fmt.Println("Player 1 lost")
-			break
-		} else if isLost(player2Pokemons) {
-			fmt.Println("Player 2 lost")
-			break
-		}
-
 		if player1.IsTurn {
-			fmt.Print("Player 1 turn. Your current pokemon is ", player1Pokemon.Name, ". Choose your action:\n")
-			command := readCommands(reader)
-			
-			if isAlive(player1Pokemon){
-				continue
-			} else {
+			if !isAlive(player1Pokemon){
 				fmt.Println(player1Pokemon.Name, "is dead")
 				player1Pokemon = switchPokemon(*player1Pokemons)
 				if player1Pokemon == nil {
 					fmt.Println("Player 1 has no pokemon left")
+					fmt.Println("Player 1 lost")
+					break
 				} else {
 					fmt.Println("Player 1 switched to", player1Pokemon.Name)
 				}
 			}
+
+			fmt.Print("Player 1 turn. Your current pokemon is ", player1Pokemon.Name, ". Choose your action:\n")
+			command := readCommands(reader)
 			switch command {
 				case "attack":
 					attack(player1Pokemon, player2Pokemon)
 				case "switch":
-					player1Pokemon = switchToChosenPokemon(*player1Pokemons, readIndex(reader))
+					dislaySelectedPokemons(*player1Pokemons)
+					player1Pokemon = switchToChosenPokemon(*player1Pokemons, reader)
+					fmt.Println("Player 1 switched to", player1Pokemon.Name)
+				case "?":
+					displayCommandsList()
 			}
 			
 			player1.IsTurn = false
 			player2.IsTurn = true
 		}
 		
-		if player2.IsTurn {
-			fmt.Print("Player 1 turn. Your current pokemon is ", player2Pokemon.Name, ". Choose your action:\n")
-			command := readCommands(reader)
-			
-			if isAlive(player2Pokemon){
-				continue
-			} else {
+		if player2.IsTurn {	
+			if !isAlive(player2Pokemon){
 				fmt.Println(player2Pokemon.Name, "is dead")
 				player2Pokemon = switchPokemon(*player2Pokemons)
 				if player2Pokemon == nil {
-					fmt.Println("Player 1 has no pokemon left")
+					fmt.Println("Player 2 has no pokemon left")
+					fmt.Println("Player 2 lost")
+					break
 				} else {
-					fmt.Println("Player 1 switched to", player2Pokemon.Name)
+					fmt.Println("Player 2 switched to", player2Pokemon.Name)
 				}
 			}
+
+			fmt.Print("Player 2 turn. Your current pokemon is ", player2Pokemon.Name, ". Choose your action:\n")
+			command := readCommands(reader)
 			switch command {
 				case "attack":
 					attack(player2Pokemon, player2Pokemon)
 				case "switch":
-					player2Pokemon = switchToChosenPokemon(*player2Pokemons, readIndex(reader))
+					dislaySelectedPokemons(*player2Pokemons)
+					player2Pokemon = switchToChosenPokemon(*player2Pokemons, reader)
+					fmt.Println("Player 2 switched to", player2Pokemon.Name)
+				case "?":
+					displayCommandsList()
 			}
 
 			player2.IsTurn = false
@@ -217,15 +222,6 @@ func getFirstDefender(defenderPokemons []Pokemon) *Pokemon {
 	return &defenderPokemons[choosenPokemonIndex]
 }
 
-func isLost(pokemonsList *[]Pokemon) bool {
-	for _, pokemon := range *pokemonsList {
-		if pokemon.Stats.HP > 0 {
-			return false
-		}
-	}
-	return true
-}
-
 func isAlive(pokemon *Pokemon) bool {
 	return pokemon.Stats.HP > 0
 }
@@ -242,18 +238,31 @@ func switchPokemon(pokemonsList []Pokemon) *Pokemon {
 	}
 }
 
-func switchToChosenPokemon(pokemonsList []Pokemon, index int) *Pokemon {
-	fmt.Print("You have: ")
-	for _, pokemon := range pokemonsList{
-		if isAlive(&pokemon){
-			fmt.Print(pokemon.Name, " ")
-		}
+func displayCommandsList(){
+	fmt.Println("List of commands:")
+	fmt.Println("\tattack: to attack the opponent")
+	fmt.Println("\tswitch: to switch to another pokemon")
+}
+
+func dislaySelectedPokemons(pokemonsList []Pokemon) {
+	fmt.Println("You have:")
+	for i, pokemon := range pokemonsList {
+		fmt.Print(i,". " ,pokemon.Name, "\n")
 	}
+	fmt.Println("Please enter the index of the pokemon you want to switch to: ")
+}
+
+func switchToChosenPokemon(pokemonsList []Pokemon, reader *bufio.Reader) *Pokemon {
 	for{
+		index := readIndex(reader)
+		if index < 0 || index >= len(pokemonsList){
+			fmt.Println("Please enter a valid index.")
+			continue
+		}
 		if isAlive(&pokemonsList[index]){
 			return &pokemonsList[index]
 		} else {
-			fmt.Println("This pokemon is dead")
+			fmt.Println("This pokemon is dead. Please select another pokemon.")
 		}
 	}	
 }
@@ -276,9 +285,18 @@ func readCommands(reader *bufio.Reader) string {
 
 func readIndex(reader *bufio.Reader) int {
 	// read the index from the user
-	input, _ := reader.ReadString('\n')
-	index, _ := strconv.Atoi(strings.TrimSpace(input))
-	return index
+	for {
+		input, _ := reader.ReadString('\n')
+		input = strings.TrimSpace(input)
+		inputs := strings.Split(input, " ")
+		if len(inputs) > 1 {
+			fmt.Println("Please enter an index with one number")
+			continue
+		} else {
+			index, _ := strconv.Atoi(inputs[0])
+			return index
+		}
+	}
 }	
 
 func printPokemonInfo(index int, pokemon Pokemon){
