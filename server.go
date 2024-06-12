@@ -386,7 +386,7 @@ func main() {
 			}
 		case "Inventory":
 			for _, inv := range players[idStr].Inventory {
-				inventoryDetails := fmt.Sprintf("Player Inventory: Name: %s, Level: %d, ID: %d", inv.MyPokemon[0].Name, inv.Level, inv.ID)
+				inventoryDetails := fmt.Sprintf("Player Inventory: Name: %s, Level: %d, ID: %d", inv.Name, inv.Level, inv.)
 				_, err := conn.WriteToUDP([]byte(inventoryDetails), addr)
 				if err != nil {
 					fmt.Println("Error sending connect message to client:", err)
