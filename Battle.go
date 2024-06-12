@@ -275,7 +275,7 @@ func readCommands(reader *bufio.Reader) string {
 		commands := strings.Split(command, " ")
 		if (len(commands) > 1){
 			fmt.Println("Please enter a command with one word")
-		} else if (commands[0] == "attack" || commands[0] == "switch"){
+		} else if (commands[0] == "attack" || commands[0] == "switch" || commands[0] == "?"){
 			return strings.ToLower(commands[0]) 
 		} else {
 			fmt.Println("Please enter a valid command")
