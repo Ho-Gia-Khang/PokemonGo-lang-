@@ -1,361 +1,358 @@
-// package main
+package main
 
-// import (
-// 	"bufio"
-// 	"fmt"
-// 	"math/rand"
-// 	"net"
-// 	"os"
-// 	"reflect"
-// 	"strconv"
-// 	"strings"
-// 	"time"
-// )
+import (
+	"fmt"
+	"net"
+	"reflect"
+	"strconv"
+	"strings"
+	"time"
+)
 
-// func battleScene(player1 *Player, player2 *Player, conn1 net.Conn, conn2 net.Conn) {
+func battleScene(player1 *Player, player2 *Player, conn *net.UDPConn, addr1, addr2 *net.UDPAddr) {
 
-// 	if len(player1.Inventory) < 3 {
-// 		fmt.Println("Player 1 has less than 3 pokemons")
-// 		conn1.Write([]byte("You has less than 3 pokemons"))
-// 		return
-// 	} else if len(player2.Inventory) < 3 {
-// 		fmt.Println("Player 2 has less than 3 pokemons")
-// 		conn2.Write([]byte("You has less than 3 pokemons"))
-// 		return
-// 	}
+	if player1 == nil {
+		fmt.Println("Error: player1 is nil")
+		return
+	}
+	if conn == nil {
+		fmt.Println("Error: conn is nil")
+		return
+	}
+	if addr1 == nil {
+		fmt.Println("Error: addr1 is nil")
+		return
+	}
+	if len(player1.Inventory) < 3 {
+		fmt.Println("Player 1 has less than 3 pokemons")
+		conn.WriteToUDP([]byte("You have less than 3 pokemons"), addr1)
+		return
+	} else if len(player2.Inventory) < 3 {
+		fmt.Println("Player 2 has less than 3 pokemons")
+		conn.WriteToUDP([]byte("You have less than 3 pokemons"), addr2)
+		return
+	}
 
-// 	// init the battle
-// 	reader := bufio.NewReader(os.Stdin)
+	// Player 1 select 3 Pokemons
+	fmt.Println("Player 1 please select 3 pokemons from:")
+	conn.WriteToUDP([]byte("Player 1 please select 3 pokemons from:\n"), addr1)
+	for i := range player1.Inventory {
+		printPokemonInfo(i, player1.Inventory[i])
+		conn.WriteToUDP([]byte(fmt.Sprintf("%d: %s\n", i, player1.Inventory[i].Name)), addr1)
+	}
+	player1Pokemons := selectPokemon(player1, conn, addr1)
 
-// 	// player 1 select 3 pokemons
-// 	fmt.Println("Player 1 please select 3 pokemons from: ")
-// 	conn1.Write([]byte("Player 1 please select 3 pokemons from: "))
-// 	for i := range len(player1.Inventory) {
-// 		printPokemonInfo(i, player1.Inventory[i])
-// 		conn1.Write([]byte("Player 1 please select 3 pokemons from: "))
-// 	}
-// 	player1Pokemons := selectPokemon(player1, reader)
+	// Player 2 select 3 Pokemons
+	fmt.Println("Player 2 please select 3 pokemons from:")
+	conn.WriteToUDP([]byte("Player 2 please select 3 pokemons from:\n"), addr2)
+	for i := range player2.Inventory {
+		printPokemonInfo(i, player2.Inventory[i])
+		conn.WriteToUDP([]byte(fmt.Sprintf("%d: %s\n", i, player2.Inventory[i].Name)), addr2)
+	}
+	player2Pokemons := selectPokemon(player2, conn, addr2)
 
-// 	// player 2 select 3 pokemons
-// 	fmt.Println("Player 2 please select 3 pokemons from: ")
-// 	conn2.Write([]byte("Player 2 please select 3 pokemons from: "))
-// 	for i := range len(player2.Inventory) {
-// 		printPokemonInfo(i, player2.Inventory[i])
-// 		conn2.Write([]byte("Player 2 please select 3 pokemons from: "))
-// 	}
-// 	player2Pokemons := selectPokemon(player2, reader)
+	allBattlingPokemons := append(*player1Pokemons, *player2Pokemons...)
+	firstAttacker := getFirstAttacker(allBattlingPokemons)
+	var firstDefender *Pokemon
 
-// 	var allBattlingPokemons = append(*player1Pokemons, *player2Pokemons...)
-// 	var firstAttacker = getFirstAttacker(allBattlingPokemons)
-// 	var firstDefender *Pokemon
+	fmt.Println("Battle start!")
+	conn.WriteToUDP([]byte("Battle start!\n"), addr1)
+	conn.WriteToUDP([]byte("Battle start!\n"), addr2)
 
-// 	fmt.Println("Battle start!")
-// 	fmt.Println("Please enter a one-word command: attack or switch to control your pokemon.")
-// 	fmt.Println("Enter \"?\" to see the list of commands.")
-// 	if isContain(*player1Pokemons, *firstAttacker) {
-// 		firstDefender = getFirstDefender(*player2Pokemons)
-// 		fmt.Println("Player 1 goes first")
-// 		player1.IsTurn = false
-// 		player2.IsTurn = true
-// 	} else {
-// 		firstDefender = getFirstDefender(*player1Pokemons)
-// 		fmt.Println("Player 2 goes first")
-// 		player1.IsTurn = true
-// 		player2.IsTurn = false
-// 	}
+	if isContain(*player1Pokemons, *firstAttacker) {
+		firstDefender = getFirstDefender(*player2Pokemons)
+		fmt.Println("Player 1 goes first")
+		conn.WriteToUDP([]byte("Player 1 goes first\n"), addr1)
+		conn.WriteToUDP([]byte("Player 1 goes first\n"), addr2)
+		player1.IsTurn = true
+		player2.IsTurn = false
+	} else {
+		firstDefender = getFirstDefender(*player1Pokemons)
+		fmt.Println("Player 2 goes first")
+		conn.WriteToUDP([]byte("Player 2 goes first\n"), addr1)
+		conn.WriteToUDP([]byte("Player 2 goes first\n"), addr2)
+		player1.IsTurn = false
+		player2.IsTurn = true
+	}
 
-// 	attack(firstAttacker, firstDefender)
-// 	var player1Pokemon = firstAttacker
-// 	var player2Pokemon = firstDefender
+	// The battle loop
+	var player1Pokemon = firstAttacker
+	var player2Pokemon = firstDefender
+	for {
+		if player1.IsTurn {
+			if !isAlive(player1Pokemon) {
+				fmt.Println(player1Pokemon.Name, "is dead")
+				conn.WriteToUDP([]byte(fmt.Sprintf("%s is dead\n", player1Pokemon.Name)), addr1)
+				player1Pokemon = switchPokemon(*player1Pokemons, conn, addr1)
+				if player1Pokemon == nil {
+					fmt.Println("Player 1 has no pokemon left")
+					fmt.Println("Player 1 lost")
+					conn.WriteToUDP([]byte("You have no pokemon left. You lost.\n"), addr1)
+					conn.WriteToUDP([]byte("Player 1 has no pokemon left. Player 2 wins.\n"), addr2)
+					break
+				} else {
+					fmt.Println("Player 1 switched to", player1Pokemon.Name)
+					conn.WriteToUDP([]byte(fmt.Sprintf("Player 1 switched to %s\n", player1Pokemon.Name)), addr1)
+				}
+			}
 
-// 	// the battle loop
-// 	for {
-// 		if player1.IsTurn {
-// 			if !isAlive(player1Pokemon) {
-// 				fmt.Println(player1Pokemon.Name, "is dead")
-// 				player1Pokemon = switchPokemon(*player1Pokemons)
-// 				if player1Pokemon == nil {
-// 					fmt.Println("Player 1 has no pokemon left")
-// 					fmt.Println("Player 1 lost")
-// 					break
-// 				} else {
-// 					fmt.Println("Player 1 switched to", player1Pokemon.Name)
-// 				}
-// 			}
+			fmt.Printf("Player 1 turn. Your current pokemon is %s. Choose your action:\n", player1Pokemon.Name)
+			conn.WriteToUDP([]byte(fmt.Sprintf("Your turn. Your current pokemon is %s. Choose your action:\n", player1Pokemon.Name)), addr1)
+			command := readCommands(conn, addr1)
+			switch command {
+			case "attack":
+				attack(player1Pokemon, player2Pokemon, conn, addr1)
+			case "switch":
+				displaySelectedPokemons(*player1Pokemons, conn, addr1)
+				player1Pokemon = switchToChosenPokemon(*player1Pokemons, conn, addr1)
+				fmt.Println("Player 1 switched to", player1Pokemon.Name)
+				conn.WriteToUDP([]byte(fmt.Sprintf("Switched to %s\n", player1Pokemon.Name)), addr1)
+			case "?":
+				displayCommandsList(conn, addr1)
+			}
 
-// 			fmt.Print("Player 1 turn. Your current pokemon is ", player1Pokemon.Name, ". Choose your action:\n")
-// 			command := readCommands(reader)
-// 			switch command {
-// 			case "attack":
-// 				attack(player1Pokemon, player2Pokemon)
-// 			case "switch":
-// 				dislaySelectedPokemons(*player1Pokemons)
-// 				player1Pokemon = switchToChosenPokemon(*player1Pokemons, reader)
-// 				fmt.Println("Player 1 switched to", player1Pokemon.Name)
-// 			case "?":
-// 				displayCommandsList()
-// 			}
+			player1.IsTurn = false
+			player2.IsTurn = true
+		}
 
-// 			player1.IsTurn = false
-// 			player2.IsTurn = true
-// 		}
+		if player2.IsTurn {
+			if !isAlive(player2Pokemon) {
+				fmt.Println(player2Pokemon.Name, "is dead")
+				conn.WriteToUDP([]byte(fmt.Sprintf("%s is dead\n", player2Pokemon.Name)), addr2)
+				player2Pokemon = switchPokemon(*player2Pokemons, conn, addr2)
+				if player2Pokemon == nil {
+					fmt.Println("Player 2 has no pokemon left")
+					fmt.Println("Player 2 lost")
+					conn.WriteToUDP([]byte("You have no pokemon left. You lost.\n"), addr2)
+					conn.WriteToUDP([]byte("Player 2 has no pokemon left. Player 1 wins.\n"), addr1)
+					break
+				} else {
+					fmt.Println("Player 2 switched to", player2Pokemon.Name)
+					conn.WriteToUDP([]byte(fmt.Sprintf("Player 2 switched to %s\n", player2Pokemon.Name)), addr2)
+				}
+			}
 
-// 		if player2.IsTurn {
-// 			if !isAlive(player2Pokemon) {
-// 				fmt.Println(player2Pokemon.Name, "is dead")
-// 				player2Pokemon = switchPokemon(*player2Pokemons)
-// 				if player2Pokemon == nil {
-// 					fmt.Println("Player 2 has no pokemon left")
-// 					fmt.Println("Player 2 lost")
-// 					break
-// 				} else {
-// 					fmt.Println("Player 2 switched to", player2Pokemon.Name)
-// 				}
-// 			}
+			fmt.Printf("Player 2 turn. Your current pokemon is %s. Choose your action:\n", player2Pokemon.Name)
+			conn.WriteToUDP([]byte(fmt.Sprintf("Your turn. Your current pokemon is %s. Choose your action:\n", player2Pokemon.Name)), addr2)
+			command := readCommands(conn, addr2)
+			switch command {
+			case "attack":
+				attack(player2Pokemon, player1Pokemon, conn, addr2)
+			case "switch":
+				displaySelectedPokemons(*player2Pokemons, conn, addr2)
+				player2Pokemon = switchToChosenPokemon(*player2Pokemons, conn, addr2)
+				fmt.Println("Player 2 switched to", player2Pokemon.Name)
+				conn.WriteToUDP([]byte(fmt.Sprintf("Switched to %s\n", player2Pokemon.Name)), addr2)
+			case "?":
+				displayCommandsList(conn, addr2)
+			}
 
-// 			fmt.Print("Player 2 turn. Your current pokemon is ", player2Pokemon.Name, ". Choose your action:\n")
-// 			command := readCommands(reader)
-// 			switch command {
-// 			case "attack":
-// 				attack(player2Pokemon, player1Pokemon)
-// 			case "switch":
-// 				dislaySelectedPokemons(*player2Pokemons)
-// 				player2Pokemon = switchToChosenPokemon(*player2Pokemons, reader)
-// 				fmt.Println("Player 2 switched to", player2Pokemon.Name)
-// 			case "?":
-// 				displayCommandsList()
-// 			}
+			player2.IsTurn = false
+			player1.IsTurn = true
+		}
 
-// 			player2.IsTurn = false
-// 			player1.IsTurn = true
-// 		}
+		time.Sleep(500 * time.Millisecond)
+	}
+}
 
-// 		time.Sleep(500 * time.Millisecond)
-// 	}
-// }
+func attack(attacker *Pokemon, defender *Pokemon, conn *net.UDPConn, addr *net.UDPAddr) {
+	// Calculate the damage
+	var dmg float32
+	var attackerMove = chooseAttack(*attacker)
+	fmt.Println(attacker.Name, "chose", attackerMove.Name, "to attack", defender.Name)
+	conn.WriteToUDP([]byte(fmt.Sprintf("%s chose %s to attack %s\n", attacker.Name, attackerMove.Name, defender.Name)), addr)
 
-// func attack(attacker *Pokemon, defender *Pokemon) {
-// 	// Calculate the damage
-// 	var dmg float32
-// 	var attackerMove = chooseAttack(*attacker)
-// 	fmt.Println(attacker.Name, "chosed", attackerMove.Name, "to attack", defender.Name)
+	switch attackerMove.Name {
+	case "Tackle":
+		dmg = attackerMove.Power - defender.Stats.Defense
+	case "Special":
+		attackingElement := attackerMove.Element
+		dmgWhenAttacked := defender.DamegeWhenAttacked
+		defendingElement := []string{}
+		for _, element := range dmgWhenAttacked {
+			defendingElement = append(defendingElement, element.Element)
+		}
+		highestCoefficient := float32(0)
 
-// 	switch attackerMove.Name {
-// 	case "Tackle":
-// 		dmg = attackerMove.Power - defender.Stats.Defense
-// 	case "Special":
-// 		attackingElement := attackerMove.Element
-// 		dmgWhenAttacked := defender.DamegeWhenAttacked
-// 		defendingElement := []string{}
-// 		for _, element := range dmgWhenAttacked {
-// 			defendingElement = append(defendingElement, element.Element)
-// 		}
-// 		highestCoefficient := float32(0)
+		// Check for the highest coefficient
+		for i, element := range defendingElement {
+			if isContain(attackingElement, element) {
+				if highestCoefficient < dmgWhenAttacked[i].Coefficient {
+					highestCoefficient = dmgWhenAttacked[i].Coefficient
+				}
+			}
+		}
 
-// 		// check for the highest coefficient
-// 		for i, element := range defendingElement {
-// 			if isContain(attackingElement, element) {
-// 				if highestCoefficient < dmgWhenAttacked[i].Coefficient {
-// 					highestCoefficient = dmgWhenAttacked[i].Coefficient
-// 				}
-// 			}
-// 		}
+		// If the attacker has an element that the defender doesn't have, set the coefficient to 1
+		for _, element := range defendingElement {
+			if !isContain(attackingElement, element) && highestCoefficient < 1 {
+				highestCoefficient = 1
+			}
+		}
 
-// 		// if the attacker have the element that the defender doesn't have, set the coefficient to 1
-// 		for _, element := range defendingElement {
-// 			if !isContain(attackingElement, element) && highestCoefficient < 1 {
-// 				highestCoefficient = 1
-// 			}
-// 		}
+		dmg = attackerMove.Power*highestCoefficient - defender.Stats.Sp_Defense
+	}
 
-// 		dmg = attackerMove.Power*highestCoefficient - defender.Stats.Sp_Defense
-// 	}
+	if dmg < 0 {
+		dmg = 0
+	}
+	fmt.Println(attacker.Name, "attacked", defender.Name, "with", attackerMove.Name, "and dealt", dmg, "damage")
+	conn.WriteToUDP([]byte(fmt.Sprintf("%s attacked %s with %s and dealt %.2f damage\n", attacker.Name, defender.Name, attackerMove.Name, dmg)), addr)
+	defender.Stats.HP -= dmg
+}
 
-// 	if dmg < 0 {
-// 		dmg = 0
-// 	}
-// 	fmt.Println(attacker.Name, "attacked", defender.Name, "with", attackerMove.Name, "and dealt", dmg, "damage")
-// 	defender.Stats.HP -= dmg
-// }
+func chooseAttack(pokemon Pokemon) Moves {
+	n, _ := randomInt(2)
+	return pokemon.Moves[n]
+}
 
-// func chooseAttack(pokemon Pokemon) Moves {
-// 	n := rand.Intn(2)
-// 	return pokemon.Moves[n]
-// }
+func isContain[T any](arr []T, element T) bool {
+	for _, a := range arr {
+		if reflect.DeepEqual(a, element) {
+			return true
+		}
+	}
+	return false
+}
 
-// func isContain[T any](arr []T, element T) bool {
-// 	for _, a := range arr {
-// 		if reflect.DeepEqual(a, element) {
-// 			return true
-// 		}
-// 	}
-// 	return false
-// }
+func getFirstAttacker(allBattlingPokemons []Pokemon) *Pokemon {
+	var highestSpeed = 0
+	var choosenPokemonIndex = 0
+	for i, pokemon := range allBattlingPokemons {
+		if pokemon.Stats.Speed > highestSpeed {
+			highestSpeed = pokemon.Stats.Speed
+			choosenPokemonIndex = i
+		}
+	}
 
-// func getFirstAttacker(allBattlingPokemons []Pokemon) *Pokemon {
-// 	var highestSpeed = 0
-// 	var choosenPokemonIndex = 0
-// 	for i, pokemon := range allBattlingPokemons {
-// 		if pokemon.Stats.Speed > highestSpeed {
-// 			highestSpeed = pokemon.Stats.Speed
-// 			choosenPokemonIndex = i
-// 		}
-// 	}
+	return &allBattlingPokemons[choosenPokemonIndex]
+}
 
-// 	return &allBattlingPokemons[choosenPokemonIndex]
-// }
+func getFirstDefender(defenderPokemons []Pokemon) *Pokemon {
+	var highestSpeed = 0
+	var choosenPokemonIndex = 0
+	for i, pokemon := range defenderPokemons {
+		if pokemon.Stats.Speed > highestSpeed {
+			highestSpeed = pokemon.Stats.Speed
+			choosenPokemonIndex = i
+		}
+	}
 
-// func getFirstDefender(defenderPokemons []Pokemon) *Pokemon {
-// 	var highestSpeed = 0
-// 	var choosenPokemonIndex = 0
-// 	for i, pokemon := range defenderPokemons {
-// 		if pokemon.Stats.Speed > highestSpeed {
-// 			highestSpeed = pokemon.Stats.Speed
-// 			choosenPokemonIndex = i
-// 		}
-// 	}
+	return &defenderPokemons[choosenPokemonIndex]
+}
 
-// 	return &defenderPokemons[choosenPokemonIndex]
-// }
+func isAlive(pokemon *Pokemon) bool {
+	return pokemon.Stats.HP > 0
+}
 
-// func isAlive(pokemon *Pokemon) bool {
-// 	return pokemon.Stats.HP > 0
-// }
+func switchPokemon(pokemonsList []Pokemon, conn *net.UDPConn, addr *net.UDPAddr) *Pokemon {
+	for i := 0; i < len(pokemonsList); i++ {
+		if isAlive(&pokemonsList[i]) {
+			return &pokemonsList[i]
+		}
+	}
+	return nil
+}
 
-// func switchPokemon(pokemonsList []Pokemon) *Pokemon {
-// 	if isAlive(&pokemonsList[0]) {
-// 		return &pokemonsList[0]
-// 	} else if isAlive(&pokemonsList[1]) {
-// 		return &pokemonsList[1]
-// 	} else if isAlive(&pokemonsList[2]) {
-// 		return &pokemonsList[2]
-// 	} else {
-// 		return nil
-// 	}
-// }
+func displayCommandsList(conn *net.UDPConn, addr *net.UDPAddr) {
+	conn.WriteToUDP([]byte("List of commands:\n"), addr)
+	conn.WriteToUDP([]byte("\tattack: to attack the opponent\n"), addr)
+	conn.WriteToUDP([]byte("\tswitch: to switch to another pokemon\n"), addr)
+}
 
-// func displayCommandsList() {
-// 	fmt.Println("List of commands:")
-// 	fmt.Println("\tattack: to attack the opponent")
-// 	fmt.Println("\tswitch: to switch to another pokemon")
-// }
+func displaySelectedPokemons(pokemonsList []Pokemon, conn *net.UDPConn, addr *net.UDPAddr) {
+	conn.WriteToUDP([]byte("You have:\n"), addr)
+	for i, pokemon := range pokemonsList {
+		conn.WriteToUDP([]byte(fmt.Sprintf("%d. %s\n", i, pokemon.Name)), addr)
+	}
+	conn.WriteToUDP([]byte("Please enter the index of the pokemon you want to switch to:\n"), addr)
+}
 
-// func dislaySelectedPokemons(pokemonsList []Pokemon) {
-// 	fmt.Println("You have:")
-// 	for i, pokemon := range pokemonsList {
-// 		fmt.Print(i, ". ", pokemon.Name, "\n")
-// 	}
-// 	fmt.Println("Please enter the index of the pokemon you want to switch to: ")
-// }
+func switchToChosenPokemon(pokemonsList []Pokemon, conn *net.UDPConn, addr *net.UDPAddr) *Pokemon {
+	for {
+		index := readIndex(conn, addr)
+		if index < 0 || index >= len(pokemonsList) {
+			conn.WriteToUDP([]byte("Please enter a valid index.\n"), addr)
+			continue
+		}
+		if isAlive(&pokemonsList[index]) {
+			return &pokemonsList[index]
+		} else {
+			conn.WriteToUDP([]byte("This pokemon is dead. Please select another one.\n"), addr)
+		}
+	}
+}
 
-// func switchToChosenPokemon(pokemonsList []Pokemon, reader *bufio.Reader) *Pokemon {
-// 	for {
-// 		index := readIndex(reader)
-// 		if index < 0 || index >= len(pokemonsList) {
-// 			fmt.Println("Please enter a valid index.")
-// 			continue
-// 		}
-// 		if isAlive(&pokemonsList[index]) {
-// 			return &pokemonsList[index]
-// 		} else {
-// 			fmt.Println("This pokemon is dead. Please select another pokemon.")
-// 		}
-// 	}
-// }
+func readCommands(conn *net.UDPConn, addr *net.UDPAddr) string {
+	buffer := make([]byte, 1024)
+	n, _, _ := conn.ReadFromUDP(buffer)
+	command := strings.TrimSpace(string(buffer[:n]))
+	if command == "attack" || command == "switch" || command == "?" {
+		return strings.ToLower(command)
+	}
+	conn.WriteToUDP([]byte("Please enter a valid command\n"), addr)
+	return readCommands(conn, addr)
+}
 
-// func readCommands(reader *bufio.Reader) string {
-// 	// read the commands from the user
-// 	for {
-// 		input, _ := reader.ReadString('\n')
-// 		command := strings.TrimSpace(input)
-// 		commands := strings.Split(command, " ")
-// 		if len(commands) > 1 {
-// 			fmt.Println("Please enter a command with one word")
-// 		} else if commands[0] == "attack" || commands[0] == "switch" || commands[0] == "?" {
-// 			return strings.ToLower(commands[0])
-// 		} else {
-// 			fmt.Println("Please enter a valid command")
-// 		}
-// 	}
-// }
+func readIndex(conn *net.UDPConn, addr *net.UDPAddr) int {
+	buffer := make([]byte, 1024)
+	n, _, _ := conn.ReadFromUDP(buffer)
+	input := strings.TrimSpace(string(buffer[:n]))
+	index, _ := strconv.Atoi(input)
+	return index
+}
 
-// func readIndex(reader *bufio.Reader) int {
-// 	// read the index from the user
-// 	for {
-// 		input, _ := reader.ReadString('\n')
-// 		input = strings.TrimSpace(input)
-// 		inputs := strings.Split(input, " ")
-// 		if len(inputs) > 1 {
-// 			fmt.Println("Please enter an index with one number")
-// 			continue
-// 		} else {
-// 			index, _ := strconv.Atoi(inputs[0])
-// 			return index
-// 		}
-// 	}
-// }
+func printPokemonInfo(index int, pokemon Pokemon) {
+	fmt.Println(index, ":", pokemon.Name)
 
-// func printPokemonInfo(index int, pokemon Pokemon) {
-// 	fmt.Println(index, ":", pokemon.Name)
+	fmt.Println("\tElements: ")
+	for _, element := range pokemon.Elements {
+		fmt.Println("\t\tElement:", element)
+	}
 
-// 	fmt.Println("\tElements: ")
+	fmt.Println("\tStats:")
+	fmt.Println("\t\tHP:", pokemon.Stats.HP)
+	fmt.Println("\t\tAttack:", pokemon.Stats.Attack)
+	fmt.Println("\t\tDefense:", pokemon.Stats.Defense)
+	fmt.Println("\t\tSpeed:", pokemon.Stats.Speed)
+	fmt.Println("\t\tSp_Attack:", pokemon.Stats.Sp_Attack)
+	fmt.Println("\t\tSp_Defense:", pokemon.Stats.Sp_Defense)
 
-// 	for _, element := range pokemon.Elements {
-// 		fmt.Println("\t\tElement:", element)
+	fmt.Println("\tDamage When Attacked:")
+	for _, element := range pokemon.DamegeWhenAttacked {
+		fmt.Printf("\t\tElement: %s. Coefficient: %f\n", element.Element, element.Coefficient)
+	}
+}
 
-// 	}
+func selectPokemon(player *Player, conn *net.UDPConn, addr *net.UDPAddr) *[]Pokemon {
+	var selectedPokemons = []Pokemon{}
+	counter := 1
+	for {
+		if len(selectedPokemons) == 3 {
+			break
+		}
+		conn.WriteToUDP([]byte(fmt.Sprintf("Enter the index of the %d pokemon you want to select: ", counter)), addr)
+		index := readIndex(conn, addr)
+		if index < 0 || index >= len(player.Inventory) {
+			conn.WriteToUDP([]byte("Invalid index\n"), addr)
+			continue
+		}
 
-// 	fmt.Println("\tStats:")
+		if isContain(selectedPokemons, player.Inventory[index]) {
+			conn.WriteToUDP([]byte("You have selected this pokemon. Please select another one.\n"), addr)
+			continue
+		}
 
-// 	fmt.Println("\t\tHP:", pokemon.Stats.HP)
+		conn.WriteToUDP([]byte(fmt.Sprintf("Selected %s\n", player.Inventory[index].Name)), addr)
+		counter++
+		selectedPokemons = append(selectedPokemons, player.Inventory[index])
+	}
 
-// 	fmt.Println("\t\tAttack:", pokemon.Stats.Attack)
+	conn.WriteToUDP([]byte("You have selected: "), addr)
+	for _, pokemon := range selectedPokemons {
+		conn.WriteToUDP([]byte(fmt.Sprintf("%s ", pokemon.Name)), addr)
+	}
+	conn.WriteToUDP([]byte("\n"), addr)
 
-// 	fmt.Println("\t\tDefense:", pokemon.Stats.Defense)
-
-// 	fmt.Println("\t\tSpeed:", pokemon.Stats.Speed)
-
-// 	fmt.Println("\t\tSp_Attack:", pokemon.Stats.Sp_Attack)
-
-// 	fmt.Println("\t\tSp_Defense:", pokemon.Stats.Sp_Defense)
-
-// 	fmt.Println("\tDamege When Attacked:")
-
-// 	for _, element := range pokemon.DamegeWhenAttacked {
-// 		fmt.Printf("\t\tElement: %s. Coefficient: %f\n", element.Element, element.Coefficient)
-
-// 	}
-// }
-
-// func selectPokemon(player *Player, reader *bufio.Reader) *[]Pokemon {
-// 	var selectedPokemons = []Pokemon{}
-// 	counter := 1
-// 	for {
-// 		if len(selectedPokemons) == 3 {
-// 			break
-// 		}
-// 		fmt.Printf("Enter the index of the %d pokemon you want to select: ", counter)
-// 		index := readIndex(reader)
-// 		if index < 0 || index >= len(player.Inventory) {
-// 			fmt.Println("Invalid index")
-// 			continue
-// 		}
-
-// 		if isContain(selectedPokemons, player.Inventory[index]) {
-// 			fmt.Println("You have selected this pokemon. Please select another one.")
-// 			continue
-// 		}
-
-// 		fmt.Println("Selected", player.Inventory[index].Name)
-// 		counter++
-// 		selectedPokemons = append(selectedPokemons, player.Inventory[index])
-// 	}
-
-// 	fmt.Println("You have selected: ")
-// 	for _, pokemon := range selectedPokemons {
-// 		fmt.Print(pokemon.Name, " ")
-// 	}
-// 	fmt.Println()
-
-// 	return &selectedPokemons
-// }
+	return &selectedPokemons
+}
