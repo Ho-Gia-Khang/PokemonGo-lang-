@@ -1,0 +1,13 @@
+{
+  "Name": "Tin",
+  "ID": "12700160605",
+  "PlayerCoordinateX": 3,
+  "PlayerCoordinateY": 8,
+  "Inventory": null,
+  "IsTurn": false,
+  "Addr": {
+    "IP": "127.0.0.1",
+    "Port": 60605,
+    "Zone": ""
+  }
+}
