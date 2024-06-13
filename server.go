@@ -99,22 +99,12 @@ func PassingPokemontoInventory(pokemon *Pokemon, player *Player) {
 	player.Inventory = append(player.Inventory, *pokemon)
 }
 func PassingPlayertoJson(filename string, player *Player) {
-	data, err := os.ReadFile(filename)
+
+	updatedData, err := json.MarshalIndent(player, "", "  ")
 	if err != nil {
 		fmt.Println("Error:", err)
 	}
-
-	var players []Player
-	if err := json.Unmarshal(data, &players); err != nil {
-		fmt.Println("Error:", err)
-	}
-
-	players = append(players, *player)
-	updatedData, err := json.MarshalIndent(players, "", "  ")
-	if err != nil {
-		fmt.Println("Error:", err)
-	}
-	if err := os.WriteFile(filename, updatedData, 0644); err != nil {
+	if err := os.WriteFile(filename, updatedData, 0666); err != nil {
 		fmt.Println("Error:", err)
 	}
 
@@ -206,7 +196,8 @@ func PokeCat(Id string, playername string, x int, y int, conn *net.UDPConn, Addr
 				for _, pokedex := range pokeDexWorld {
 					CheckForPokemonEncounter(players[Id], pokedex)
 				}
-				PassingPlayertoJson("pokeInventory.json", players[Id])
+				fileName := fmt.Sprintf("pokeInventory%s.json", Id)
+				PassingPlayertoJson(fileName, players[Id])
 			} else {
 				// Player does not exist, create a new one
 				players[Id] = &Player{
@@ -219,7 +210,8 @@ func PokeCat(Id string, playername string, x int, y int, conn *net.UDPConn, Addr
 				for _, pokedex := range pokeDexWorld {
 					CheckForPokemonEncounter(players[Id], pokedex)
 				}
-				PassingPlayertoJson("pokeInventory.json", players[Id])
+				fileName := fmt.Sprintf("pokeInventory%s.json", Id)
+				PassingPlayertoJson(fileName, players[Id])
 			}
 
 			fmt.Println("Player placed at", x, y)

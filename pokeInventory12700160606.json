@@ -1,0 +1,194 @@
+{
+  "Name": "Minh",
+  "ID": "12700160606",
+  "PlayerCoordinateX": 1,
+  "PlayerCoordinateY": 0,
+  "Inventory": [
+    {
+      "Name": "Vileplume",
+      "Elements": [
+        "grass",
+        "poison"
+      ],
+      "EV": 0,
+      "Stats": {
+        "HP": 45,
+        "Attack": 80,
+        "Defense": 85,
+        "Speed": 50,
+        "Sp_Attack": 110,
+        "Sp_Defense": 90
+      },
+      "Profile": {
+        "Height": 1.2,
+        "Weight": 18.6,
+        "CatchRate": 0,
+        "GenderRatio": {
+          "MaleRatio": 50,
+          "FemaleRatio": 50
+        },
+        "EggGroup": "Grass",
+        "HatchSteps": 5100,
+        "Abilities": "Effect-spore, Chlorophyll"
+      },
+      "DamegeWhenAttacked": [
+        {
+          "Element": "ground",
+          "Coefficient": 2
+        },
+        {
+          "Element": "fighting",
+          "Coefficient": 0.5
+        },
+        {
+          "Element": "psychic",
+          "Coefficient": 2
+        },
+        {
+          "Element": "fairy",
+          "Coefficient": 0.5
+        },
+        {
+          "Element": "flying",
+          "Coefficient": 2
+        },
+        {
+          "Element": "water",
+          "Coefficient": 0.5
+        },
+        {
+          "Element": "fire",
+          "Coefficient": 2
+        },
+        {
+          "Element": "electric",
+          "Coefficient": 0.5
+        },
+        {
+          "Element": "ice",
+          "Coefficient": 2
+        },
+        {
+          "Element": "grass",
+          "Coefficient": 0.25
+        }
+      ],
+      "EvolutionLevel": 0,
+      "NextEvolution": "",
+      "Moves": [
+        {
+          "Name": "Tackle",
+          "Element": [
+            ""
+          ],
+          "Power": 80,
+          "Acc": 100,
+          "PP": 35
+        },
+        {
+          "Name": "Special",
+          "Element": [
+            "grass",
+            "poison"
+          ],
+          "Power": 110,
+          "Acc": 100,
+          "PP": 25
+        }
+      ],
+      "Experience": 0,
+      "Level": 0
+    },
+    {
+      "Name": "Hitmontop",
+      "Elements": [
+        "fighting"
+      ],
+      "EV": 0,
+      "Stats": {
+        "HP": 50,
+        "Attack": 95,
+        "Defense": 95,
+        "Speed": 70,
+        "Sp_Attack": 35,
+        "Sp_Defense": 110
+      },
+      "Profile": {
+        "Height": 1.4,
+        "Weight": 48,
+        "CatchRate": 0,
+        "GenderRatio": {
+          "MaleRatio": 100,
+          "FemaleRatio": 0
+        },
+        "EggGroup": "Human-Like",
+        "HatchSteps": 6375,
+        "Abilities": "Intimidate, Steadfast, Technician"
+      },
+      "DamegeWhenAttacked": [
+        {
+          "Element": "flying",
+          "Coefficient": 2
+        },
+        {
+          "Element": "rock",
+          "Coefficient": 0.5
+        },
+        {
+          "Element": "psychic",
+          "Coefficient": 2
+        },
+        {
+          "Element": "bug",
+          "Coefficient": 0.5
+        },
+        {
+          "Element": "fairy",
+          "Coefficient": 2
+        },
+        {
+          "Element": "grass",
+          "Coefficient": 0.5
+        },
+        {
+          "Element": "",
+          "Coefficient": 0
+        },
+        {
+          "Element": "dark",
+          "Coefficient": 0.5
+        }
+      ],
+      "EvolutionLevel": 0,
+      "NextEvolution": "",
+      "Moves": [
+        {
+          "Name": "Tackle",
+          "Element": [
+            ""
+          ],
+          "Power": 95,
+          "Acc": 100,
+          "PP": 35
+        },
+        {
+          "Name": "Special",
+          "Element": [
+            "fighting"
+          ],
+          "Power": 35,
+          "Acc": 100,
+          "PP": 25
+        }
+      ],
+      "Experience": 0,
+      "Level": 0
+    }
+  ],
+  "IsTurn": false,
+  "Addr": {
+    "IP": "127.0.0.1",
+    "Port": 60606,
+    "Zone": ""
+  }
+}
